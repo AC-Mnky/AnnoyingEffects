@@ -8,6 +8,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.random.Random;
 
 import java.util.EnumSet;
 
@@ -27,13 +28,13 @@ public class ChannelingStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-
-        if(!entity.getWorld().isClient && entity.getRandom().nextInt(20)==0){
+        Random random = entity.getRandom();
+        if(!entity.getWorld().isClient && random.nextInt(20)==0){
             ServerWorld world = (ServerWorld) entity.getWorld();
             if(!world.getLevelProperties().isThundering()) return true;
-            double x = entity.getX() + entity.getRandom().nextBetween(-10, 10);
+            double x = entity.getX() + random.nextBetween(-10, 10);
             double y = entity.getY();
-            double z = entity.getZ() + entity.getRandom().nextBetween(-10, 10);
+            double z = entity.getZ() + random.nextBetween(-10, 10);
             for(int i=-10;i<10;++i) {
                 if (LocationPredicate.Builder.create().canSeeSky(true).build().test(world, x, y+i, z)) {
                     LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);

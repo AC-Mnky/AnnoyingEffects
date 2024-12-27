@@ -11,18 +11,18 @@
 | CarrotCurse          | Curse of not eating carrot | 不吃胡萝卜的下场 | 720/3600               | 每t获得一组毒马铃薯。                                    | 毒马铃薯   | 1 |
 | Channeling           | /                          | 引雷             | 120/600                 | 在雷雨天，平均每20t有一道雷生成在周围（有一定概率劈到）。 | 三叉戟     | 1 |
 | ChaoticExplosion     | Essence of fire            | 火之精粹         | 15/300                  | 你会不停产生爆炸（平均50t）。                              | 火         |          |
-| ChaoticTeleport      | Where am I?                | 我在哪？         | 30/600                  | 每隔100t触发一次紫颂果传送。                               | 爆裂紫颂果 |          |
-| ControlsAlwaysDig    | Mad digger                 | 抓狂             | 15/300                  | 你会一直挖掘。                                             | 红色稿子   |          |
+| ChaoticTeleportation | Where am I?                | 我在哪？         | 30/600                  | 每隔100t触发一次紫颂果传送。                               | 爆裂紫颂果 |          |
+| ControlsAlwaysDig    | Mad miner             | 抓狂             | 15/300                  | 你会一直挖掘。                                             | 红色稿子   |          |
 | ControlsAlwaysJump   | Where is the toilet?       | 想上厕所         | 60/600                  | 你会不停跳跃。                                             | 马桶       |          |
 | ControlsChaoticUse   | Twitching                  | 抽搐             | 30/600                  | 你会随机地使用主手物品（平均50t）。                        | 👋          |          |
 | ControlsCrab         | I am a crab                | 我是螃蟹         | 60/600                  | 你不能前进或后退。                                         | 🦀          |          |
 | ControlsMirror       | Mirror                     | 镜像             | 60/600                  | 左键向右走，右键向左走。                                   | □\|□       |          |
-| ControlsShortReach   | /                          | 手短             | 60/600                  | 你的reach distance减少2。                                  | 🦖          |          |
+| ControlsShortReach   | Short arms                | 手短             | 60/600                  | 你的reach distance减少2。                                  | 🦖          |          |
 | Crawler              | /                          | 阴暗地爬行       | 60/600                  | 你会爬行。                                                 | 活板门     |          |
 | Creeperphobia        | Creeper?                   | Creeper？        | 120/600                 | 苦力怕不再渲染。你会随机幻听到苦力怕爆炸的声音。           | Creeper头  | 渲染完成 |
 | CurseOfVanishing     | /                          | 消失诅咒         | 20/100                  | 你死亡时物品栏会清空。                                     | 材质丢失*4 |          |
 | DisableCraftingTable | Crafting fatigue           | 无法工作         | 120/600                 | 你不能与工作台或合成器交互。                               | 禁止工作台 |          |
-| DisableInventory     | Where is my bag?           | 我的包呢？       | 15/150                  | 无法打开物品栏。（类似于下界传送门里。）                   | 禁止箱子   |          |
+| DisableInventory     | Where is my bag?           | 我的包呢？       | 15/150                  | 无法打开物品栏。（类似于下界传送门里。）                   | 禁止收纳袋 |          |
 | DisableSleeping | Insomnia                  | 失眠             | 120/600                 | 你不能与床交互。幻翼会在露天时生成。                       | 禁止床     |          |
 | EndermanHostile      | Gaze                       | 凝视             | 120/600                 | 吸引所有末影人的仇恨。                                     | 末影人头   |          |
 | Heaviness            | /                          | 沉重             | 60/600                  | 跳跃高度降低。增加掉落伤害。使用鞘翅时会下落更快。         | 铁砧       |          |

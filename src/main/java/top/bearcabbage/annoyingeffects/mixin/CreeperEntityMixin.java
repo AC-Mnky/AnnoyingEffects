@@ -17,7 +17,7 @@ public abstract class CreeperEntityMixin extends Entity{
 
     public boolean shouldRender(double distance) {
         assert MinecraftClient.getInstance().player != null;
-        if (MinecraftClient.getInstance().player.hasStatusEffect(AnnoyingEffects.CREEPERPHOBIA_ENTRY)){
+        if (MinecraftClient.getInstance().player.hasStatusEffect(AnnoyingEffects.CREEPERPHOBIA)){
             return false;
         }
         return super.shouldRender(distance);
