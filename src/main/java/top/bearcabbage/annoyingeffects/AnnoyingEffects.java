@@ -63,8 +63,8 @@ public class AnnoyingEffects implements ModInitializer {
 
 
 	public static final RegistryEntry<StatusEffect> ANOREXIA_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "anorexia"), ANOREXIA);
-//	public static final RegistryEntry<StatusEffect> CARROT_CURSE_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "carrot_curse"), CARROT_CURSE);
-//	public static final RegistryEntry<StatusEffect> CHANNELING_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "channeling"), CHANNELING);
+	public static final RegistryEntry<StatusEffect> CARROT_CURSE_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "carrot_curse"), CARROT_CURSE);
+	public static final RegistryEntry<StatusEffect> CHANNELING_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "channeling"), CHANNELING);
 //	public static final RegistryEntry<StatusEffect> CHAOTIC_EXPLOSION_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "chaotic_explosion"), CHAOTIC_EXPLOSION);
 //	public static final RegistryEntry<StatusEffect> CHAOTIC_TELEPORTATION_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "chaotic_teleportation"), CHAOTIC_TELEPORTATION);
 //	public static final RegistryEntry<StatusEffect> CONTROLS_ALWAYS_DIG_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_always_dig"), CONTROLS_ALWAYS_DIG);
@@ -107,7 +107,6 @@ public class AnnoyingEffects implements ModInitializer {
 			ItemStack itemStack = player.getStackInHand(hand);
 			if(itemStack.getItem().getComponents().contains(DataComponentTypes.FOOD) &&
 					player.hasStatusEffect(ANOREXIA_ENTRY) &&
-//					player.hasStatusEffect(Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "anorexia"), new AnorexiaStatusEffect())) &&
 					!player.isSpectator()){
 //				player.damage(player.getDamageSources().cactus(), 1.0F);
 				player.addStatusEffect(new StatusEffectInstance(NAUSEA, 300));
