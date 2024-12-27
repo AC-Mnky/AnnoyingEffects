@@ -3,18 +3,13 @@ package top.bearcabbage.annoyingeffects;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import org.slf4j.Logger;
@@ -35,8 +30,9 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final StatusEffect REALLYHOT = new ReallyHotStatusEffect();
 	public static final StatusEffect REALLYCOLD = new ReallyColdStatusEffect();
 	public static final StatusEffect ANOREXIA = new AnorexiaStatusEffect();
-//	public static final StatusEffect CREEPERPHOBIA = new CreeperphobiaStatusEffect();
+	public static final StatusEffect CREEPERPHOBIA = new CreeperphobiaStatusEffect();
 	public static final RegistryEntry<StatusEffect> ANOREXIA_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "anorexia"), ANOREXIA);
+	public static final RegistryEntry<StatusEffect> CREEPERPHOBIA_ENTRY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "creeperphobia"), CREEPERPHOBIA);
 
 	@Override
 	public void onInitialize() {
@@ -48,7 +44,7 @@ public class AnnoyingEffects implements ModInitializer {
 		Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "really_hot"), REALLYHOT);
 		Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "really_cold"), REALLYCOLD);
 		Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "anorexia"), ANOREXIA);
-//		Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "creeperphobia"), CREEPERPHOBIA);
+		Registry.register(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "creeperphobia"), CREEPERPHOBIA);
 
 
 
