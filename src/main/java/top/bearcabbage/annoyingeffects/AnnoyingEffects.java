@@ -8,6 +8,7 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -21,9 +22,8 @@ import top.bearcabbage.annoyingeffects.effect.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
 import static net.minecraft.entity.effect.StatusEffects.*;
-import static net.minecraft.item.Items.CARROT;
+import static net.minecraft.item.Items.*;
 
 public class AnnoyingEffects implements ModInitializer {
 	public static final String MOD_ID = "annoyingeffects";
@@ -137,6 +137,19 @@ public class AnnoyingEffects implements ModInitializer {
 					!(itemStack.getItem() == CARROT && Objects.equals(itemStack.getName().getString(), "AC is watching you"))){
 				player.addStatusEffect(new StatusEffectInstance(NAUSEA, 300));
 				return TypedActionResult.success(itemStack);
+			}
+			else if(itemStack.getItem() == MILK_BUCKET &&
+					player.hasStatusEffect(TANGLING_NIGHTMARE) &&
+					!player.isSpectator()){
+				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
+				//// I am giving up.
+//				pumpkin.addEnchantment(Registries.ENCHANTMENTS.entryOf(BINDING_CURSE));
+//				ItemEnchantmentsComponent enchantment = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT).add(BINDING_CURSE, 0).build();
+//				pumpkin.apply(ENCHANTMENTS, enchantment, UnaryOperator.identity());
+//				pumpkin.applyChanges(ComponentChanges.builder().build());
+//				pumpkin.applyChanges(ComponentChanges.builder().add(new Component<>(PREVENT_ARMOR_CHANGE, Unit.INSTANCE)).build());
+				player.setStackInHand(hand, pumpkin);
+				return TypedActionResult.pass(pumpkin);
 			}
 
 			return TypedActionResult.pass(itemStack);

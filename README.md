@@ -13,9 +13,9 @@
 | ChaoticExplosion     | Essence of fire            | 火之精粹         | 30/600             | 你会不停产生爆炸（平均50t）。                              | 火         | 1 |
 | ChaoticTeleportation | Where am I?                | 我在哪？         | 30/600                  | 每隔100t触发一次紫颂果传送。                               | 爆裂紫颂果 | 1 |
 | ControlsAlwaysDig    | Mad miner             | 抓狂             | 15/300                  | 你会一直挖掘。                                             | 红色稿子   |          |
-| ControlsAlwaysJump   | Where is the toilet?       | 想上厕所         | 60/600                  | 你会不停跳跃。                                             | 马桶       |          |
+| ControlsAlwaysJump   | Where is the toilet?       | 想上厕所         | 60/600                  | 你会不停跳跃。                                             | 马桶       | 1 |
 | ControlsChaoticUse   | Twitching                  | 抽搐             | 30/600                  | 你会随机地使用主手物品（平均50t）。                        | 👋          |          |
-| ControlsCrab         | I am a crab                | 我是螃蟹         | 60/600                  | 你不能前进或后退。                                         | 🦀          |          |
+| ControlsCrab         | I am a crab                | 我是螃蟹         | 60/600                  | 你不能前进或后退。                                         | 🦀          | 1 |
 | ControlsMirror       | Mirror                     | 镜像             | 60/600                  | 左键向右走，右键向左走。                                   | □\|□       |          |
 | ControlsShortReach   | Short arms                | 手短             | 60/600                  | 你的reach distance减少2。                                  | 🦖          |          |
 | Crawler              | /                          | 阴暗地爬行       | 60/600                  | 你会爬行。                                                 | 活板门     |          |

@@ -5,7 +5,8 @@
 	"mixins": [
 		"ExampleMixin",
 		"CreeperEntityMixin",
-		"ServerPlayerEntityMixin"
+		"ServerPlayerEntityMixin",
+		"ClientPlayerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
