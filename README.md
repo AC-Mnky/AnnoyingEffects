@@ -21,9 +21,9 @@
 | Crawler              | /                          | 阴暗地爬行       | 60/600                  | 你会爬行。                                                 | 活板门     | 1 |
 | Creeperphobia        | Creeper?                   | Creeper？        | 120/600                 | 苦力怕不再渲染。你会随机幻听到苦力怕爆炸的声音。           | Creeper头  | 渲染完成 |
 | CurseOfVanishing     | /                          | 消失诅咒         | 20/100                  | 你死亡时物品栏会清空。                                     | 材质丢失*4 |          |
-| DisableCraftingTable | Crafting fatigue           | 无法工作         | 120/600                 | 你不能与工作台或合成器交互。                               | 禁止工作台 |          |
+| DisableCraftingTable | Crafting fatigue           | 无法工作         | 120/600                 | 你不能与工作台或合成器交互。                               | 禁止工作台 | 1 |
 | DisableInventory     | Where is my bag?           | 我的包呢？       | 15/150                  | 无法打开物品栏。（类似于下界传送门里。）                   | 禁止收纳袋 |          |
-| DisableSleeping | Insomnia                  | 失眠             | 120/600                 | 你不能与床交互。幻翼会在露天时生成。                       | 禁止床     |          |
+| DisableSleeping | Insomnia                  | 失眠             | 120/600                 | 你不能与床交互。幻翼会在露天时生成。                       | 禁止床     | 幻翼还没写 |
 | EndermanHostile      | Gaze                       | 凝视             | 120/600                 | 吸引所有末影人的仇恨。                                     | 末影人头   |          |
 | Heaviness            | /                          | 沉重             | 60/600                  | 跳跃高度降低。增加掉落伤害。使用鞘翅时会下落更快。         | 铁砧       |          |
 | Horseless            | /                          | 没有马           | 5/300                   | 周围的马会死掉。                                           | 禁止马     |          |

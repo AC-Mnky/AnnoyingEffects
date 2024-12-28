@@ -3,7 +3,10 @@ package top.bearcabbage.annoyingeffects;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -13,8 +16,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.bearcabbage.annoyingeffects.effect.*;
@@ -133,10 +139,12 @@ public class AnnoyingEffects implements ModInitializer {
 			ItemStack itemStack = player.getStackInHand(hand);
 			if(itemStack.getItem().getComponents().contains(DataComponentTypes.FOOD) &&
 					player.hasStatusEffect(ANOREXIA) &&
-					!player.isSpectator() &&
+					!player.isSpectator() && !player.getWorld().isClient() &&
 					!(itemStack.getItem() == CARROT && Objects.equals(itemStack.getName().getString(), "AC is watching you"))){
-				player.addStatusEffect(new StatusEffectInstance(NAUSEA, 300));
-				return TypedActionResult.success(itemStack);
+				StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
+				stackHolder.pushStatusEffect(new StatusEffectInstance(NAUSEA, 300));
+				player.sendMessage(Text.translatable("messages.annoyingeffects.anorexia"), true);
+				return TypedActionResult.fail(itemStack);
 			}
 			else if(itemStack.getItem() == MILK_BUCKET &&
 					player.hasStatusEffect(TANGLING_NIGHTMARE) &&
@@ -149,10 +157,31 @@ public class AnnoyingEffects implements ModInitializer {
 //				pumpkin.applyChanges(ComponentChanges.builder().build());
 //				pumpkin.applyChanges(ComponentChanges.builder().add(new Component<>(PREVENT_ARMOR_CHANGE, Unit.INSTANCE)).build());
 				player.setStackInHand(hand, pumpkin);
+				player.sendMessage(Text.translatable("messages.annoyingeffects.tanglingnightmaremilk"), true);
 				return TypedActionResult.pass(pumpkin);
 			}
 
 			return TypedActionResult.pass(itemStack);
+		});
+
+
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+//			ItemStack itemStack = player.getStackInHand(hand);
+//			Direction side = hitResult.getSide();
+			BlockPos pos = hitResult.getBlockPos();
+			BlockState blockState = player.getWorld().getBlockState(pos);
+			if(player.hasStatusEffect(DISABLE_CRAFTING_TABLE) && !player.isSpectator() &&
+					(blockState.getBlock() == Block.getBlockFromItem(CRAFTING_TABLE) ||
+							blockState.getBlock() == Block.getBlockFromItem(CRAFTER))) {
+				player.sendMessage(Text.translatable("messages.annoyingeffects.craftingfatigue"), true);
+				return ActionResult.FAIL;
+			}
+			if(player.hasStatusEffect(DISABLE_SLEEPING) && !player.isSpectator() &&
+					(blockState.getBlock().getName().getString().contains("Bed"))) { //// 这段我自己都绷不住了（是的我知道基岩）  --AC
+				player.sendMessage(Text.translatable("messages.annoyingeffects.insomnia"), true);
+				return ActionResult.FAIL;
+			}
+			return ActionResult.PASS;
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register((server) -> {

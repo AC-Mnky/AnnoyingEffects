@@ -32,5 +32,9 @@
   "effect.annoyingeffects.targeted": "Targeted",
   "effect.annoyingeffects.voiceless": "Voiceless",
   "effect.annoyingeffects.vulnerable": "Vulnerable",
-  "effect.annoyingeffects.water_filling": "Grudge of the old world"
+  "effect.annoyingeffects.water_filling": "Grudge of the old world",
+  "messages.annoyingeffects.anorexia": "You do not feel like you can eat",
+  "messages.annoyingeffects.tanglingnightmaremilk": "You cannot escape this nightmare",
+  "messages.annoyingeffects.craftingfatigue": "Your are too tired to craft",
+  "messages.annoyingeffects.insomnia": "Your body refuses to sleep"
 }
