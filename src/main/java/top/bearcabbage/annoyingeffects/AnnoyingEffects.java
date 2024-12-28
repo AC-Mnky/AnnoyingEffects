@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -151,12 +152,7 @@ public class AnnoyingEffects implements ModInitializer {
 					player.hasStatusEffect(TANGLING_NIGHTMARE) &&
 					!player.isSpectator()){
 				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
-				// 实在不知道写在哪个注册表了就遍历了一下（）但似乎能跑了
-				RegistryEntry<Enchantment> enchantment = (RegistryEntry<Enchantment>) world.getRegistryManager().streamAllRegistries()
-						.filter(registry -> registry.key().getValue().getPath().contains("enchantment"))
-						.flatMap(registry -> registry.value().streamEntries())
-						.filter(entry -> entry.registryKey().getValue().getPath().contains("binding"))
-						.findFirst().orElse(null);
+				RegistryEntry<Enchantment> enchantment = (RegistryEntry) world.getRegistryManager().get(RegistryKey.ofRegistry(Identifier.ofVanilla("enchantment"))).getEntry(Identifier.ofVanilla("binding_curse")).orElseThrow();
 				pumpkin.addEnchantment(enchantment, 1);
 				player.setStackInHand(hand, pumpkin);
 				player.sendMessage(Text.translatable("messages.annoyingeffects.tanglingnightmaremilk"), true);
