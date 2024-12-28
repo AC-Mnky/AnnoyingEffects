@@ -28,7 +28,8 @@ public class ChannelingStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        Random random = entity.getRandom();
+        long random_seed = entity.getRandom().nextLong();
+        Random random = Random.create(random_seed);
         if(!entity.getWorld().isClient && random.nextInt(20)==0){
             ServerWorld world = (ServerWorld) entity.getWorld();
             if(!world.getLevelProperties().isThundering()) return true;

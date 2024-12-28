@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
@@ -26,14 +27,18 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(!entity.isPlayer()) return false;
+        long random_seed = entity.getRandom().nextLong();
         if(entity.getWorld().isClient) return true;
+        ServerWorld world = (ServerWorld) entity.getWorld();
         StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) entity;
-        Random random = entity.getRandom();
+        Random random = Random.create(random_seed);
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
             if(entity.hasStatusEffect(effect)) continue;
             int packed = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
             int duration = (packed >> 16) * 20;
             int interval = (packed & 0xffff) * 20;
+            if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
+            if(effect.equals(AnnoyingEffects.WATER_FILLING) && !world.getLevelProperties().isRaining()) continue;
             if(random.nextInt(interval)==0){
 //                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));

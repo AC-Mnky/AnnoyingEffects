@@ -9,9 +9,9 @@
 | TanglingNightmare   | /                          | 噩梦缠绕         | /                       | 随机施加本表格中的状态效果。玩家无法使用牛奶。         | 附魔南瓜头 | 1 |
 | Anorexia             | /                          | 厌食             | 120/600                 | 不能使用食物。                                             | 禁止面包   | 1        |
 | CarrotCurse          | Curse of not eating carrot | 不吃胡萝卜的下场 | 720/3600               | 每t获得一组毒马铃薯。                                    | 毒马铃薯   | 1 |
-| Channeling           | /                          | 引雷             | 120/600                 | （仅雷雨天）平均每20t有一道雷生成在周围（有一定概率劈到）。 | 三叉戟     | 触发待修正 |
-| ChaoticExplosion     | Essence of fire            | 火之精粹         | 15/300                  | 你会不停产生爆炸（平均50t）。                              | 火         |          |
-| ChaoticTeleportation | Where am I?                | 我在哪？         | 30/600                  | 每隔100t触发一次紫颂果传送。                               | 爆裂紫颂果 |          |
+| Channeling           | /                          | 引雷             | 120/600                 | （仅雷雨天）平均每20t有一道雷生成在周围（有一定概率劈到）。 | 三叉戟     | 1 |
+| ChaoticExplosion     | Essence of fire            | 火之精粹         | 30/600             | 你会不停产生爆炸（平均50t）。                              | 火         | 1 |
+| ChaoticTeleportation | Where am I?                | 我在哪？         | 30/600                  | 每隔100t触发一次紫颂果传送。                               | 爆裂紫颂果 | 1 |
 | ControlsAlwaysDig    | Mad miner             | 抓狂             | 15/300                  | 你会一直挖掘。                                             | 红色稿子   |          |
 | ControlsAlwaysJump   | Where is the toilet?       | 想上厕所         | 60/600                  | 你会不停跳跃。                                             | 马桶       |          |
 | ControlsChaoticUse   | Twitching                  | 抽搐             | 30/600                  | 你会随机地使用主手物品（平均50t）。                        | 👋          |          |
