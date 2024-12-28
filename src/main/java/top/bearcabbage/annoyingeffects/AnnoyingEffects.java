@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import org.slf4j.Logger;
@@ -19,8 +20,10 @@ import top.bearcabbage.annoyingeffects.effect.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import static net.minecraft.entity.effect.StatusEffects.NAUSEA;
+import static net.minecraft.entity.effect.StatusEffects.*;
+import static net.minecraft.item.Items.CARROT;
 
 public class AnnoyingEffects implements ModInitializer {
 	public static final String MOD_ID = "annoyingeffects";
@@ -29,43 +32,6 @@ public class AnnoyingEffects implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-
-//	public static final StatusEffect ANOREXIA = new AnorexiaStatusEffect();
-//	public static final StatusEffect CARROT_CURSE = new CarrotCurseStatusEffect();
-//	public static final StatusEffect CHANNELING = new ChannelingStatusEffect();
-//	public static final StatusEffect CHAOTIC_EXPLOSION = new ChaoticExplosionStatusEffect();
-//	public static final StatusEffect CHAOTIC_TELEPORTATION = new ChaoticTeleportationStatusEffect();
-//	public static final StatusEffect CONTROLS_ALWAYS_DIG = new ControlsAlwaysDigStatusEffect();
-//	public static final StatusEffect CONTROLS_ALWAYS_JUMP = new ControlsAlwaysJumpStatusEffect();
-//	public static final StatusEffect CONTROLS_CHAOTIC_USE = new ControlsChaoticUseStatusEffect();
-//	public static final StatusEffect CONTROLS_CRAB = new ControlsCrabStatusEffect();
-//	public static final StatusEffect CONTROLS_MIRROR = new ControlsMirrorStatusEffect();
-//	public static final StatusEffect CONTROLS_SHORT_REACH = new ControlsShortReachStatusEffect();
-//	public static final StatusEffect CRAWLER = new CrawlerStatusEffect();
-//	public static final StatusEffect CREEPERPHOBIA = new CreeperphobiaStatusEffect();
-//	public static final StatusEffect CURSE_OF_VANISHING = new CurseOfVanishingStatusEffect();
-//	public static final StatusEffect DISABLE_CRAFTING_TABLE = new DisableCraftingTableStatusEffect();
-//	public static final StatusEffect DISABLE_INVENTORY = new DisableInventoryStatusEffect();
-//	public static final StatusEffect DISABLE_SLEEPING = new DisableSleepingStatusEffect();
-//	public static final StatusEffect ENDERMAN_HOSTILE = new EndermanHostileStatusEffect();
-//	public static final StatusEffect HEAVINESS = new HeavinessStatusEffect();
-//	public static final StatusEffect HORSELESS = new HorselessStatusEffect();
-//	public static final StatusEffect MISFORTUNE = new MisfortuneStatusEffect();
-//	public static final StatusEffect OPPRESSED = new OppressedStatusEffect();
-//	public static final StatusEffect REALLY_COLD = new ReallyColdStatusEffect();
-//	public static final StatusEffect REALLY_HOT = new ReallyHotStatusEffect();
-//	public static final StatusEffect REPEATER = new RepeaterStatusEffect();
-//	public static final StatusEffect SCHIZOPHRENIA = new SchizophreniaStatusEffect();
-//	public static final StatusEffect SLIPPY = new SlippyStatusEffect();
-//	public static final StatusEffect SPIN = new SpinStatusEffect();
-//	public static final StatusEffect SWAPPING_HANDS = new SwappingHandsStatusEffect();
-//	public static final StatusEffect TANGLING_NIGHTMARE = new TanglingNightmareStatusEffect();
-//	public static final StatusEffect TARGETED = new TargetedStatusEffect();
-//	public static final StatusEffect VOICELESS = new VoicelessStatusEffect();
-//	public static final StatusEffect VULNERABLE = new VulnerableStatusEffect();
-//	public static final StatusEffect WATER_FILLING = new WaterFillingStatusEffect();
-
 
 	public static final RegistryEntry<StatusEffect> ANOREXIA = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "anorexia"), new AnorexiaStatusEffect());
 	public static final RegistryEntry<StatusEffect> CARROT_CURSE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "carrot_curse"), new CarrotCurseStatusEffect());
@@ -149,24 +115,42 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(VOICELESS, pack(120, 600));
 			STATUS_EFFECT_MAP.put(VULNERABLE, pack(120, 600));
 			STATUS_EFFECT_MAP.put(WATER_FILLING, pack(60, 1200));
+
+			STATUS_EFFECT_MAP.put(BLINDNESS, pack(30, 600));
+			STATUS_EFFECT_MAP.put(DARKNESS, pack(30, 600));
+			STATUS_EFFECT_MAP.put(HUNGER, pack(60, 600));
+			STATUS_EFFECT_MAP.put(INFESTED, pack(120, 600));
+			STATUS_EFFECT_MAP.put(LEVITATION, pack(10, 200));
+			STATUS_EFFECT_MAP.put(MINING_FATIGUE, pack(60, 600));
+			STATUS_EFFECT_MAP.put(NAUSEA, pack(10, 200));
+			STATUS_EFFECT_MAP.put(SLOWNESS, pack(60, 600));
+			STATUS_EFFECT_MAP.put(WEAKNESS, pack(120, 600));
+			STATUS_EFFECT_MAP.put(WITHER, pack(10, 200));
+
 		}
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			ItemStack itemStack = player.getStackInHand(hand);
 			if(itemStack.getItem().getComponents().contains(DataComponentTypes.FOOD) &&
 					player.hasStatusEffect(ANOREXIA) &&
-					!player.isSpectator()){
-//				player.damage(player.getDamageSources().cactus(), 1.0F);
+					!player.isSpectator() &&
+					!(itemStack.getItem() == CARROT && Objects.equals(itemStack.getName().getString(), "AC is watching you"))){
 				player.addStatusEffect(new StatusEffectInstance(NAUSEA, 300));
-				player.addStatusEffect(new StatusEffectInstance(REALLY_HOT, 60));
 				return TypedActionResult.success(itemStack);
 			}
 
 			return TypedActionResult.pass(itemStack);
 		});
 
-		ServerTickEvents.END_SERVER_TICK.register((world) -> {
-			// TODO
+		ServerTickEvents.END_SERVER_TICK.register((server) -> {
+			for(ServerPlayerEntity player: server.getPlayerManager().getPlayerList()){
+				StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
+				for(;;) {
+					StatusEffectInstance effect = stackHolder.popStatusEffect();
+					if (effect == null) break;
+					player.addStatusEffect(effect);
+				}
+			}
 		});
 
 		LOGGER.info("Hello Fabric world!");

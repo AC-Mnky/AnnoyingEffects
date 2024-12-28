@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
 
 public class TanglingNightmareStatusEffect extends StatusEffect {
     public TanglingNightmareStatusEffect() {
@@ -24,6 +25,9 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if(!entity.isPlayer()) return false;
+        if(entity.getWorld().isClient) return true;
+        StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) entity;
         Random random = entity.getRandom();
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
             if(entity.hasStatusEffect(effect)) continue;
@@ -31,7 +35,8 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             int duration = (packed >> 16) * 20;
             int interval = (packed & 0xffff) * 20;
             if(random.nextInt(interval)==0){
-                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
+//                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
+                stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));
                 break;
             }
         }
