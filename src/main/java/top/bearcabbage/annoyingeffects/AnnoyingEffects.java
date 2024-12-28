@@ -116,7 +116,7 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(60, 1200));
 			STATUS_EFFECT_MAP.put(SLIPPY, pack(60, 600));
 			STATUS_EFFECT_MAP.put(SPIN, pack(30, 600));
-			STATUS_EFFECT_MAP.put(SWAPPING_HANDS, pack(15, 300));
+			STATUS_EFFECT_MAP.put(SWAPPING_HANDS, pack(60, 600));
 			STATUS_EFFECT_MAP.put(TARGETED, pack(120, 600));
 			STATUS_EFFECT_MAP.put(VOICELESS, pack(120, 600));
 			STATUS_EFFECT_MAP.put(VULNERABLE, pack(120, 600));
