@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
@@ -150,12 +151,13 @@ public class AnnoyingEffects implements ModInitializer {
 					player.hasStatusEffect(TANGLING_NIGHTMARE) &&
 					!player.isSpectator()){
 				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
-				//// I am giving up on this.
-//				pumpkin.addEnchantment(Registries.ENCHANTMENTS.entryOf(BINDING_CURSE));
-//				ItemEnchantmentsComponent enchantment = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT).add(BINDING_CURSE, 0).build();
-//				pumpkin.apply(ENCHANTMENTS, enchantment, UnaryOperator.identity());
-//				pumpkin.applyChanges(ComponentChanges.builder().build());
-//				pumpkin.applyChanges(ComponentChanges.builder().add(new Component<>(PREVENT_ARMOR_CHANGE, Unit.INSTANCE)).build());
+				// 实在不知道写在哪个注册表了就遍历了一下（）但似乎能跑了
+				RegistryEntry<Enchantment> enchantment = (RegistryEntry<Enchantment>) world.getRegistryManager().streamAllRegistries()
+						.filter(registry -> registry.key().getValue().getPath().contains("enchantment"))
+						.flatMap(registry -> registry.value().streamEntries())
+						.filter(entry -> entry.registryKey().getValue().getPath().contains("binding"))
+						.findFirst().orElse(null);
+				pumpkin.addEnchantment(enchantment, 1);
 				player.setStackInHand(hand, pumpkin);
 				player.sendMessage(Text.translatable("messages.annoyingeffects.tanglingnightmaremilk"), true);
 				return TypedActionResult.pass(pumpkin);
