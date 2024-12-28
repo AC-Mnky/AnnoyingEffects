@@ -6,6 +6,7 @@ import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 
@@ -31,7 +32,11 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     protected boolean isCamera(){return false;}
 
 
-
+    /**
+     * {@code @Author} Mnky
+     * {@code @reason} Affect the player's controls.
+     */
+    @Overwrite
     public void tickNewAi() {
         super.tickNewAi();
         if (this.isCamera()) {
@@ -44,6 +49,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
             this.renderYaw += (this.getYaw() - this.renderYaw) * 0.5F;
         }
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_CRAB)) this.forwardSpeed = 0F;
+        if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_MIRROR)) this.sidewaysSpeed *= -1F;
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_ALWAYS_JUMP)) this.jumping = true;
     }
 }

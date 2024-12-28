@@ -15,6 +15,11 @@ public abstract class CreeperEntityMixin extends Entity{
         super(type, world);
     }
 
+    /**
+     * {@code @Author} Mnky
+     * {@code @reason} Blocks creeper rendering.
+     */
+    @Override
     public boolean shouldRender(double distance) {
         assert MinecraftClient.getInstance().player != null;
         if (MinecraftClient.getInstance().player.hasStatusEffect(AnnoyingEffects.CREEPERPHOBIA)){

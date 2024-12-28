@@ -91,7 +91,7 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, pack(60, 600));
 			STATUS_EFFECT_MAP.put(CONTROLS_CHAOTIC_USE, pack(30, 600));
 			STATUS_EFFECT_MAP.put(CONTROLS_CRAB, pack(60, 600));
-			STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, pack(60, 600));
+			STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, pack(120, 600));
 			STATUS_EFFECT_MAP.put(CONTROLS_SHORT_REACH, pack(60, 600));
 			STATUS_EFFECT_MAP.put(CRAWLER, pack(60, 600));
 			STATUS_EFFECT_MAP.put(CREEPERPHOBIA, pack(120, 600));
@@ -142,7 +142,7 @@ public class AnnoyingEffects implements ModInitializer {
 					player.hasStatusEffect(TANGLING_NIGHTMARE) &&
 					!player.isSpectator()){
 				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
-				//// I am giving up.
+				//// I am giving up on this.
 //				pumpkin.addEnchantment(Registries.ENCHANTMENTS.entryOf(BINDING_CURSE));
 //				ItemEnchantmentsComponent enchantment = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT).add(BINDING_CURSE, 0).build();
 //				pumpkin.apply(ENCHANTMENTS, enchantment, UnaryOperator.identity());
