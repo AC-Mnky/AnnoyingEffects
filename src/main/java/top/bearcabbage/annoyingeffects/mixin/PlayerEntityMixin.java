@@ -25,4 +25,15 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         return this.getWorld().isSpaceEmpty(this, this.getDimensions(pose).getBoxAt(this.getPos()).contract(1.0E-7));
     }
 
+//    /**
+//     * {@code @Author} Mnky
+//     * {@code @reason} Heaviness.
+//     */
+//    @Override
+//    public float getJumpBoostVelocityModifier() {
+////        if(this.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return -0.1F;
+//        return super.getJumpBoostVelocityModifier();
+////        return this.hasStatusEffect(StatusEffects.JUMP_BOOST) ? 0.1F * ((float)this.getStatusEffect(StatusEffects.JUMP_BOOST).getAmplifier() + 1.0F) : 0.0F;
+//    }
+
 }

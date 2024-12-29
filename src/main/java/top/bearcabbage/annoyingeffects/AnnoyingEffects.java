@@ -9,6 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
@@ -61,7 +63,7 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final RegistryEntry<StatusEffect> DISABLE_INVENTORY = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "disable_inventory"), new DisableInventoryStatusEffect());
 	public static final RegistryEntry<StatusEffect> DISABLE_SLEEPING = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "disable_sleeping"), new DisableSleepingStatusEffect());
 	public static final RegistryEntry<StatusEffect> ENDERMAN_HOSTILE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "enderman_hostile"), new EndermanHostileStatusEffect());
-	public static final RegistryEntry<StatusEffect> HEAVINESS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "heaviness"), new HeavinessStatusEffect());
+	public static final RegistryEntry<StatusEffect> HEAVINESS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "heaviness"), (new HeavinessStatusEffect()).addAttributeModifier(EntityAttributes.GENERIC_SAFE_FALL_DISTANCE, Identifier.of("annoyingeffect.heaviness.jump"), -3.0F, EntityAttributeModifier.Operation.ADD_VALUE).addAttributeModifier(EntityAttributes.GENERIC_GRAVITY, Identifier.of("annoyingeffect.heaviness.gravity"), 0.5F, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 	public static final RegistryEntry<StatusEffect> HORSELESS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "horseless"), new HorselessStatusEffect());
 	public static final RegistryEntry<StatusEffect> MISFORTUNE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "misfortune"), new MisfortuneStatusEffect());
 	public static final RegistryEntry<StatusEffect> OPPRESSED = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "oppressed"), new OppressedStatusEffect());
