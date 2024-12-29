@@ -114,8 +114,8 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(HORSELESS, pack(5, 300));
 			STATUS_EFFECT_MAP.put(MISFORTUNE, pack(120, 600));
 			STATUS_EFFECT_MAP.put(OPPRESSED, pack(30, 600));
-			STATUS_EFFECT_MAP.put(REALLY_COLD, pack(5, 100));
-			STATUS_EFFECT_MAP.put(REALLY_HOT, pack(4, 60));
+			STATUS_EFFECT_MAP.put(REALLY_COLD, pack(6, 120));
+			STATUS_EFFECT_MAP.put(REALLY_HOT, pack(3, 120));
 			STATUS_EFFECT_MAP.put(REPEATER, pack(120, 600));
 			STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(60, 1200));
 			STATUS_EFFECT_MAP.put(SLIPPY, pack(60, 600));
@@ -126,8 +126,8 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(VULNERABLE, pack(120, 600));
 			STATUS_EFFECT_MAP.put(WATER_FILLING, pack(60, 1200));
 
-			STATUS_EFFECT_MAP.put(BLINDNESS, pack(30, 600));
-			STATUS_EFFECT_MAP.put(DARKNESS, pack(30, 600));
+			STATUS_EFFECT_MAP.put(BLINDNESS, pack(60, 600));
+			STATUS_EFFECT_MAP.put(DARKNESS, pack(60, 600));
 			STATUS_EFFECT_MAP.put(HUNGER, pack(60, 600));
 			STATUS_EFFECT_MAP.put(INFESTED, pack(120, 600));
 			STATUS_EFFECT_MAP.put(LEVITATION, pack(10, 200));
