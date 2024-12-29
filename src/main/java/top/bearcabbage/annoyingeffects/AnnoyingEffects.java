@@ -30,6 +30,8 @@ import top.bearcabbage.annoyingeffects.effect.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.UnaryOperator;
+
 import static net.minecraft.entity.effect.StatusEffects.*;
 import static net.minecraft.item.Items.*;
 
@@ -154,6 +156,7 @@ public class AnnoyingEffects implements ModInitializer {
 				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
 				RegistryEntry<Enchantment> enchantment = (RegistryEntry) world.getRegistryManager().get(RegistryKey.ofRegistry(Identifier.ofVanilla("enchantment"))).getEntry(Identifier.ofVanilla("binding_curse")).orElseThrow();
 				pumpkin.addEnchantment(enchantment, 1);
+				pumpkin.apply(DataComponentTypes.ITEM_NAME, Text.of("噩梦缠绕"), UnaryOperator.identity());
 				player.setStackInHand(hand, pumpkin);
 				player.sendMessage(Text.translatable("messages.annoyingeffects.tanglingnightmaremilk"), true);
 				return TypedActionResult.pass(pumpkin);
