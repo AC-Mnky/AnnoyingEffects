@@ -22,7 +22,7 @@
 | Creeper？（Creeper? / Creeperphobia） | 苦力怕不再渲染。你会随机幻听到苦力怕爆炸的声音。           | Subtle | 120/600                 | 渲染完成 | Creeper头  |
 | 消失诅咒（Curse of vanishing） | 你死亡时物品栏会清空。                                     | Subtle | 20/100                  | 1 | 材质丢失*4 |
 | 无法工作（Crafting fatigue / DisableCraftingTable） | 你不能与工作台或合成器交互。                             | Handicap                         | 120/600                 | 1 | 禁止工作台 |
-| 我的包呢？（Where is my bag? / DisableInventory） | 无法打开物品栏。（类似于下界传送门里。）                   | SevereHandicap | 15/150                  |          | 禁止收纳袋 |
+| 我的包呢？（Where is my bag? / DisableInventory） | 无法打开物品栏。（类似于下界传送门里。）                   | SevereHandicap | 15/150                  | 1 | 禁止收纳袋 |
 | 失眠（Insomnia / DisableSleeping） | 你不能与床交互。幻翼会在露天时生成。                       | Handicap | 120/600                 | 幻翼还没写 | 禁止床     |
 | 凝视（Gaze / EndermanHostile） | 吸引所有末影人的仇恨。                                     | Subtle | 120/600                 |          | 末影人头   |
 | 沉重（Heaviness）  | 重力增加（跳跃高度降低）。增加掉落伤害。水中会下沉。水不再能完全消除掉落伤害。使用鞘翅时会下落更快。 | Adaptable | 60/600                  | 重力增加掉落伤害 | 铁砧       |
