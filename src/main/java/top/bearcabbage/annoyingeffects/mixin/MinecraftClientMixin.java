@@ -31,11 +31,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
     public ClientPlayerEntity player;
     @Shadow
     public int attackCooldown;
-//    @Shadow @Nullable
-//    public ClientPlayerInteractionManager interactionManager;
 
-//    @Shadow @Nullable
-//    public ClientPlayNetworkHandler getNetworkHandler() {return null;}
     @Shadow
     private void handleBlockBreaking(boolean breaking) {}
     @Shadow

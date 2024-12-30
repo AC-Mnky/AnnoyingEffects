@@ -6,7 +6,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 
 @Mixin(PlayerEntity.class)
@@ -15,25 +17,17 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     public PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
-    /**
-     * {@code @Author} Mnky
-     * {@code @reason} If the player has the crawler effect, stop them from standing up.
-     */
-    @Overwrite
-    public boolean canChangeIntoPose(EntityPose pose) {
-        if(this.hasStatusEffect(AnnoyingEffects.CRAWLER)) return false;
-        return this.getWorld().isSpaceEmpty(this, this.getDimensions(pose).getBoxAt(this.getPos()).contract(1.0E-7));
+
+    @Inject(
+            method = {"canChangeIntoPose"},
+            at = {@At("HEAD")},
+            cancellable = true
+    )
+    public void canChangeIntoPose(EntityPose pose, CallbackInfoReturnable<Boolean> ci) {
+        if (this.hasStatusEffect(AnnoyingEffects.CRAWLER)) {
+            ci.setReturnValue(false);
+        }
     }
 
-//    /**
-//     * {@code @Author} Mnky
-//     * {@code @reason} Heaviness.
-//     */
-//    @Override
-//    public float getJumpBoostVelocityModifier() {
-////        if(this.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return -0.1F;
-//        return super.getJumpBoostVelocityModifier();
-////        return this.hasStatusEffect(StatusEffects.JUMP_BOOST) ? 0.1F * ((float)this.getStatusEffect(StatusEffects.JUMP_BOOST).getAmplifier() + 1.0F) : 0.0F;
-//    }
 
 }
