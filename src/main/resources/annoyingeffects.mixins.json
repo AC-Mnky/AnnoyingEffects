@@ -6,7 +6,8 @@
 		"CreeperEntityMixin",
 		"ServerPlayerEntityMixin",
 		"ClientPlayerEntityMixin",
-		"PlayerEntityMixin"
+		"PlayerEntityMixin",
+		"MinecraftClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
