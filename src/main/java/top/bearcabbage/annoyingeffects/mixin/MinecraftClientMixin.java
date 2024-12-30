@@ -59,7 +59,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
             method = {"tick"},
             at = {@At("RETURN")}
     )
-    private void injectHandleInputEventsForBlockBreakingAndItemUsing() {
+    private void injectHandleInputEventsForBlockBreakingAndItemUsing(CallbackInfo ci) {
         if (this.player!=null && this.player.hasStatusEffect(AnnoyingEffects.CONTROLS_ALWAYS_DIG)) {
             this.attackCooldown = 0;
             this.diggingFlag = true;
