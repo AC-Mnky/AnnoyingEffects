@@ -6,6 +6,8 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 
 public class DisableInventoryStatusEffect extends StatusEffect {
     public DisableInventoryStatusEffect() {
@@ -24,11 +26,12 @@ public class DisableInventoryStatusEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(!entity.getWorld().isClient()) return true;
-//        if(!entity.isPlayer()) return true;
+        if(!entity.isPlayer()) return true;
 //        ClientWorld world = (ClientWorld) entity.getWorld();
-//        PlayerEntity player = (PlayerEntity) entity;
+        PlayerEntity player = (PlayerEntity) entity;
         Screen screen =  MinecraftClient.getInstance().currentScreen;
         if(screen instanceof HandledScreen<?>){
+            player.sendMessage(Text.translatable("messages.annoyingeffects.disable_inventory"), true);
             screen.close();
         }
 

@@ -160,7 +160,7 @@ public class AnnoyingEffects implements ModInitializer {
 				pumpkin.addEnchantment(enchantment, 1);
 				pumpkin.apply(DataComponentTypes.ITEM_NAME, Text.of("噩梦缠绕"), UnaryOperator.identity());
 				player.setStackInHand(hand, pumpkin);
-				player.sendMessage(Text.translatable("messages.annoyingeffects.tanglingnightmaremilk"), true);
+				player.sendMessage(Text.translatable("messages.annoyingeffects.tangling_nightmare_milk"), true);
 				return TypedActionResult.pass(pumpkin);
 			}
 
@@ -176,7 +176,7 @@ public class AnnoyingEffects implements ModInitializer {
 			if(player.hasStatusEffect(DISABLE_CRAFTING_TABLE) && !player.isSpectator() &&
 					(blockState.getBlock() == Block.getBlockFromItem(CRAFTING_TABLE) ||
 							blockState.getBlock() == Block.getBlockFromItem(CRAFTER))) {
-				player.sendMessage(Text.translatable("messages.annoyingeffects.craftingfatigue"), true);
+				player.sendMessage(Text.translatable("messages.annoyingeffects.crafting_fatigue"), true);
 				return ActionResult.FAIL;
 			}
 			if(player.hasStatusEffect(DISABLE_SLEEPING) && !player.isSpectator() &&

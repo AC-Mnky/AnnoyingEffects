@@ -34,7 +34,8 @@
   "effect.annoyingeffects.vulnerable": "Vulnerable",
   "effect.annoyingeffects.water_filling": "Grudge of the old world",
   "messages.annoyingeffects.anorexia": "You do not feel like you can eat",
-  "messages.annoyingeffects.tanglingnightmaremilk": "You cannot escape this nightmare",
-  "messages.annoyingeffects.craftingfatigue": "Your are too tired to craft",
-  "messages.annoyingeffects.insomnia": "Your body refuses to sleep"
+  "messages.annoyingeffects.tangling_nightmare_milk": "You cannot escape this nightmare",
+  "messages.annoyingeffects.crafting_fatigue": "Your are too tired to craft",
+  "messages.annoyingeffects.insomnia": "Your body refuses to sleep",
+  "messages.annoyingeffects.disable_inventory": "You cannot find your bag"
 }
