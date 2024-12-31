@@ -39,7 +39,7 @@
 | 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 |          | 标靶       |
 | 失声（Voiceless） | 你无法发出聊天。                                           | Joke | 120/600                 |          | 幽匿尖啸体    |
 | 易伤（Vulnerable） | 你受到的伤害增加50%。                        | Subtle | 120/600                 | ✅ | 💔       |
-| 旧世界的记忆（Memories of the old world / WaterFilling） | 持续在半径4空气中生成水源。破坏附近的门和类似的东西。移除潮涌能量。 | Damage, Adaptable, Terrachanging | 20/100（仅接触水过多） | ✅ | 水（方块）    |
+| 旧世界的记忆（Memories of the old world / WaterFilling） | 持续在半径4空气中生成水源。破坏附近的门和类似的东西。移除潮涌能量。 | Damage, Adaptable, Terrachanging | 20/100（仅接触水过多） | ✅（增长时间，增加警告，改霜冰） | 水（方块）    |
 | 失明（Blindness）  | 原版                                                       | Adaptable | 60/600               | /        | /        |
 | 黑暗（Darkness）   | 原版                                                       | Adaptable | 60/600               | /        | /        |
 | 饥饿（Hunger）  | 原版                                                       | Subtle | 60/600           | /        | /        |
@@ -55,3 +55,4 @@
 
 - 困倦：你会走在路上突然睡着。
 - 驱动：你会一直往前走。
+- 不稳定：受伤后，你会掉落随机物品。（单个物品掉落概率是1%左右，与背包中物品数量无关。）

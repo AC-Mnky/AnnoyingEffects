@@ -32,14 +32,14 @@ public class ChannelingStatusEffect extends StatusEffect {
         Random random = Random.create(random_seed);
         if(!entity.getWorld().isClient && random.nextInt(20) <= amplifier){
             ServerWorld world = (ServerWorld) entity.getWorld();
-            if(!world.getLevelProperties().isThundering()) return true;
+            if(!world.getLevelProperties().isThundering()) return false;
             double x = entity.getX() + random.nextBetween(-10, 10);
             double y = entity.getY();
             double z = entity.getZ() + random.nextBetween(-10, 10);
             for(int i=-10;i<10;++i) {
                 if (LocationPredicate.Builder.create().canSeeSky(true).build().test(world, x, y+i, z)) {
                     LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
-                    lightning.teleport(world, x, y, z, EnumSet.noneOf(PositionFlag.class), lightning.getYaw(), lightning.getPitch());
+                    lightning.teleport(world, x, y+i, z, EnumSet.noneOf(PositionFlag.class), lightning.getYaw(), lightning.getPitch());
                     world.spawnEntity(lightning);
                     break;
                 }
