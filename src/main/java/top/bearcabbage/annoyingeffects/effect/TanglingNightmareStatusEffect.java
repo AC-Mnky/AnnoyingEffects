@@ -38,7 +38,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             int duration = (packed >> 16) * 20;
             int interval = (packed & 0xffff) * 20;
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
-            if(effect.equals(AnnoyingEffects.WATER_FILLING) && !world.getLevelProperties().isRaining()) continue;
+            if(effect.equals(AnnoyingEffects.WATER_FILLING) && !entity.isTouchingWaterOrRain()) continue;
             if(random.nextInt(interval)==0){
 //                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));
