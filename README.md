@@ -36,7 +36,7 @@
 | 脚滑（Slippy）  | 摩擦力和加速度减小（类似于在冰面上走）。                   | Adaptable | 60/600                  |          | 冰块       |
 | 旋转（Spin）       | 你会一直逆时针旋转。                                       | SevereHandicap | 30/600                  | ✅ | 🌀       |
 | 交换（Swapping hands） | 每隔20t交换主副手物品。                                    | SevereHandicap | 30/600              | ✅ | ✋↔️🤚    |
-| 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 |          | 标靶       |
+| 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 | ✅ | 标靶       |
 | 失声（Voiceless） | 你无法发出聊天。                                           | Joke | 120/600                 |          | 幽匿尖啸体    |
 | 易伤（Vulnerable） | 你受到的伤害增加50%。                        | Subtle | 120/600                 | ✅ | 💔       |
 | 旧世界的记忆（Memories of the old world / WaterFilling） | 持续在半径4空气中生成水源。破坏附近的门和类似的东西。移除潮涌能量。 | Damage, Adaptable, Terrachanging | 20/100（仅接触水过多） | ✅（增长时间，增加警告，改霜冰）(存档) | 水（方块）    |
