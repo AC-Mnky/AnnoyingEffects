@@ -5,10 +5,13 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
+import top.bearcabbage.annoyingeffects.TimerType;
+import top.bearcabbage.annoyingeffects.WithTimer;
 
 public class TanglingNightmareStatusEffect extends StatusEffect {
     public TanglingNightmareStatusEffect() {
@@ -29,18 +32,21 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
         if(!entity.isPlayer()) return false;
         long random_seed = entity.getRandom().nextLong();
         if(entity.getWorld().isClient) return true;
-        ServerWorld world = (ServerWorld) entity.getWorld();
-        StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) entity;
+        ServerPlayerEntity player = (ServerPlayerEntity) entity;
+        ServerWorld world = (ServerWorld) player.getWorld();
+        StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
+        WithTimer timer = (WithTimer) player;
         Random random = Random.create(random_seed);
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
-            if(entity.hasStatusEffect(effect)) continue;
+            if(player.hasStatusEffect(effect)) continue;
             int packed = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
             int duration = (packed >> 16) * 20;
             int interval = (packed & 0xffff) * 20;
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
-            if(effect.equals(AnnoyingEffects.WATER_FILLING) && !entity.isTouchingWaterOrRain()) continue;
+            if(effect.equals(AnnoyingEffects.WATER_FILLING) && timer.getTick(TimerType.EXPOSURE_TO_WATER) < 2000) continue;
+            if(effect.equals(AnnoyingEffects.CARROT_CURSE) && timer.getTick(TimerType.EAT_CARROT) > 0) continue;
             if(random.nextInt(interval)==0){
-//                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
+//                player.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));
                 break;
             }
