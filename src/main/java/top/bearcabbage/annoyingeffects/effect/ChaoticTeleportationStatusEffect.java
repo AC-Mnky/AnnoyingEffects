@@ -22,7 +22,7 @@ public class ChaoticTeleportationStatusEffect extends StatusEffect {
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return duration % 50 == 0;
+        return duration % (1 + (49 >> amplifier)) == 0;
     }
 
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。

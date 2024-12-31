@@ -1,6 +1,7 @@
 package top.bearcabbage.annoyingeffects.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
@@ -21,5 +22,12 @@ public class VulnerableStatusEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         return true;
+    }
+
+    @Override
+    public void onEntityDamage(LivingEntity entity, int amplifier, DamageSource source, float amount) {
+        float health = entity.getHealth();
+        if(health <= 1.0F) return;
+        entity.setHealth(Math.max(1.0F, health - amount * 0.5F * (1 + amplifier)));
     }
 }

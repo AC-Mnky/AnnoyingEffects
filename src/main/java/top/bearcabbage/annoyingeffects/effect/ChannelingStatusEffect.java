@@ -30,7 +30,7 @@ public class ChannelingStatusEffect extends StatusEffect {
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         long random_seed = entity.getRandom().nextLong();
         Random random = Random.create(random_seed);
-        if(!entity.getWorld().isClient && random.nextInt(20)==0){
+        if(!entity.getWorld().isClient && random.nextInt(20) <= amplifier){
             ServerWorld world = (ServerWorld) entity.getWorld();
             if(!world.getLevelProperties().isThundering()) return true;
             double x = entity.getX() + random.nextBetween(-10, 10);

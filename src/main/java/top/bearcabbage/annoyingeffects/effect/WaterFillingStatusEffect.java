@@ -4,11 +4,15 @@ import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Items;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class WaterFillingStatusEffect extends StatusEffect {
     public WaterFillingStatusEffect() {
@@ -27,27 +31,65 @@ public class WaterFillingStatusEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(!entity.isPlayer()) return false;
+        if (entity.getWorld().getDimension().ultrawarm()) return false;
         if(entity.getWorld().isClient()) return true;
         PlayerEntity player = (PlayerEntity) entity;
+        player.removeStatusEffect(StatusEffects.CONDUIT_POWER);
         ServerWorld world = (ServerWorld) player.getWorld();
         BlockPos pos = player.getBlockPos();
-        for(int dx=-2;dx<=2;++dx) for(int dy=-2;dy<=3;++dy) for(int dz=-2;dz<=2;++dz){
+        for(int dx=-5;dx<=5;++dx) for(int dy=-5;dy<=5;++dy) for(int dz=-5;dz<=5;++dz){
             BlockPos p = pos.add(dx, dy, dz);
+            double distance = player.getEyePos().distanceTo(p.toCenterPos());
+            if(distance > 4F) continue;
+            placeWater(world, p);
+
             BlockState blockState = world.getBlockState(p);
-            ((BucketItem)Items.WATER_BUCKET).placeFluid(null, world, p, null);
-            if(blockState.getBlock() instanceof DoorBlock){
-                world.breakBlock(p, true);
+            Block block = blockState.getBlock();
+
+            if(!blockState.isFullCube(world.getChunkAsView(p.getX() >> 4, p.getZ() >> 4), p) &&
+                    !(blockState.getFluidState().getFluid().matchesType(Fluids.WATER)))
+            {
+                float hardness = block.getHardness();
+                if(hardness <= 3F - distance || block instanceof DoorBlock || block instanceof BellBlock){
+                    world.breakBlock(p, true);
+                }
             }
-//            if(blockState.isAir()){
-//                world.setBlockState(p, Blocks.WATER.getDefaultState());
-////                world.set
-//            } else if(blockState.canBucketPlace(Fluids.WATER)) {
-////                blockState.getFluidState();
-//
-//                ((BucketItem)Items.WATER_BUCKET).placeFluid(null, world, p, null);
-//
-//            }
+
         }
         return true;
+    }
+
+    private void placeWater(World world, BlockPos pos) {
+        BlockState blockState = world.getBlockState(pos);
+        Block block = blockState.getBlock();
+        boolean blockIsBreakable = blockState.canBucketPlace(Fluids.WATER);
+
+        boolean mayPlace = blockState.isAir() || blockIsBreakable || block instanceof FluidFillable fluidFillable1 && fluidFillable1.canFillWithFluid(null, world, pos, blockState, Fluids.WATER);
+        if (!mayPlace) return;
+
+        if (world.getDimension().ultrawarm()) {
+            int i = pos.getX();
+            int j = pos.getY();
+            int k = pos.getZ();
+            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
+
+            for(int l = 0; l < 8; ++l) {
+                world.addParticle(ParticleTypes.LARGE_SMOKE, (double)i + Math.random(), (double)j + Math.random(), (double)k + Math.random(), 0.0F, 0.0F, 0.0F);
+            }
+            return;
+        }
+
+        if (block instanceof FluidFillable fluidFillable) {
+            fluidFillable.tryFillWithFluid(world, pos, blockState, Fluids.WATER.getStill(false));
+            return;
+        }
+
+        if (!world.isClient && blockIsBreakable && !blockState.isLiquid()) {
+            world.breakBlock(pos, true);
+        }
+
+        world.setBlockState(pos, Fluids.WATER.getDefaultState().getBlockState(), 11);
+
+
     }
 }
