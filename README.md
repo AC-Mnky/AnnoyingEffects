@@ -8,7 +8,7 @@
 | ---------------- | -------------------------------------------------------------------------- | -------------------------------------- | -------- |----------|----------|
 | 噩梦缠绕（Tangling nightmare） | 随机施加本表格中的状态效果。玩家无法使用牛奶。         | /                      | /                       | ✅       | ✅附魔南瓜头   |
 | 厌食（Anorexia）   | 不能使用食物。                                      | Handicap                         | 120/600                 | ✅       | ✅禁止面包     |
-| 不吃胡萝卜的下场（Curse of not eating carrot / CarrotCurse） | 每t获得一组毒马铃薯。                                    | Handicap    | 120/600（仅当玩家吃胡萝卜太少） | ✅       | ✅毒马铃薯     |
+| 不吃胡萝卜的下场（Curse of not eating carrot / CarrotCurse） | 每t获得一组毒马铃薯。                                    | Handicap    | 120/600（仅当玩家吃胡萝卜太少） | ✅（存档）   | ✅毒马铃薯     |
 | 引雷（Channeling） | （仅雷雨天）平均每20t有一道雷生成在周围（有一定概率劈到）。 | Damage, Adaptable, Terrachanging | 20/100（仅雷雨天）          | ✅       | ✅三叉戟      |
 | 火之精粹（Essence of fire / ChaoticExplosion） | 你会不停产生爆炸（平均50t）。                              | Damage, Terrachanging | 30/300         | ✅       | 火        |
 | 我在哪？（Where am I? / ChaoticTeleportation） | 每隔50t触发一次紫颂果传送。                             | SevereHandicap | 15/300              | ✅       | ✅爆裂紫颂果    |
@@ -39,7 +39,7 @@
 | 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 |          | 标靶       |
 | 失声（Voiceless） | 你无法发出聊天。                                           | Joke | 120/600                 |          | 幽匿尖啸体    |
 | 易伤（Vulnerable） | 你受到的伤害增加50%。                        | Subtle | 120/600                 | ✅ | 💔       |
-| 旧世界的记忆（Memories of the old world / WaterFilling） | 持续在半径4空气中生成水源。破坏附近的门和类似的东西。移除潮涌能量。 | Damage, Adaptable, Terrachanging | 20/100（仅接触水过多） | ✅（增长时间，增加警告，改霜冰） | 水（方块）    |
+| 旧世界的记忆（Memories of the old world / WaterFilling） | 持续在半径4空气中生成水源。破坏附近的门和类似的东西。移除潮涌能量。 | Damage, Adaptable, Terrachanging | 20/100（仅接触水过多） | ✅（增长时间，增加警告，改霜冰）(存档) | 水（方块）    |
 | 失明（Blindness）  | 原版                                                       | Adaptable | 60/600               | /        | /        |
 | 黑暗（Darkness）   | 原版                                                       | Adaptable | 60/600               | /        | /        |
 | 饥饿（Hunger）  | 原版                                                       | Subtle | 60/600           | /        | /        |

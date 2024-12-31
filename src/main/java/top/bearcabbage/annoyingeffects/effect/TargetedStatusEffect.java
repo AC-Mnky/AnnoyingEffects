@@ -3,6 +3,11 @@ package top.bearcabbage.annoyingeffects.effect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
 public class TargetedStatusEffect extends StatusEffect {
     public TargetedStatusEffect() {
@@ -14,12 +19,23 @@ public class TargetedStatusEffect extends StatusEffect {
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return false;
+        return true;
     }
 
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if(!(entity instanceof PlayerEntity player)) return false;
+        World world = player.getWorld();
+        Vec3d eyePos = player.getEyePos();
+        for(ProjectileEntity projectile: world.getNonSpectatingEntities(ProjectileEntity.class,
+                Box.of(eyePos, 32F, 32F, 32F))){
+            Vec3d vec = eyePos.subtract(projectile.getPos());
+            if(eyePos.distanceTo(projectile.getPos()) >= 16F) continue;
+            Vec3d v = projectile.getVelocity();
+            projectile.setVelocity(v.multiply(0.95).add(vec.normalize().multiply(0.3)));
+
+        }
         return true;
     }
 }
