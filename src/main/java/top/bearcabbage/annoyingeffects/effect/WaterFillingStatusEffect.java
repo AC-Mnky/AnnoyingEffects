@@ -50,7 +50,7 @@ public class WaterFillingStatusEffect extends StatusEffect {
                     !(blockState.getFluidState().getFluid().matchesType(Fluids.WATER)))
             {
                 float hardness = block.getHardness();
-                if(hardness <= 3F - distance || block instanceof DoorBlock || block instanceof BellBlock){
+                if(hardness <= 4F - distance || block instanceof DoorBlock || block instanceof BellBlock){
                     world.breakBlock(p, true);
                 }
             }
