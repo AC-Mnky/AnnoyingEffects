@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -45,6 +46,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
             if(effect.equals(AnnoyingEffects.WATER_FILLING) && (!player.isTouchingWaterOrRain() || timer.getTick(TimerType.EXPOSURE_TO_WATER) < 2000)) continue;
             if(effect.equals(AnnoyingEffects.CARROT_CURSE) && timer.getTick(TimerType.EAT_CARROT) > 0) continue;
+            if(effect.equals(AnnoyingEffects.HORSELESS) && player.hasVehicle() && player.getVehicle() instanceof HorseEntity) interval /= 5;
             if(random.nextInt(interval) <= amplifier){
 //                player.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));

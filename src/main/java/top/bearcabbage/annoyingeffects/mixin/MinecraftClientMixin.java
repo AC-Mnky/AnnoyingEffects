@@ -52,7 +52,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 
 
     @Inject(
-            method = {"tick"},
+            method = {"handleInputEvents"},
             at = {@At("RETURN")}
     )
     private void injectHandleInputEventsForBlockBreakingAndItemUsing(CallbackInfo ci) {
