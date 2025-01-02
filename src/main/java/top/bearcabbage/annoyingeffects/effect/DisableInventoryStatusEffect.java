@@ -25,9 +25,8 @@ public class DisableInventoryStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if(!entity.isPlayer()) return false;
         if(!entity.getWorld().isClient()) return true;
-        if(!entity.isPlayer()) return true;
-//        ClientWorld world = (ClientWorld) entity.getWorld();
         PlayerEntity player = (PlayerEntity) entity;
         Screen screen =  MinecraftClient.getInstance().currentScreen;
         if(screen instanceof HandledScreen<?>){

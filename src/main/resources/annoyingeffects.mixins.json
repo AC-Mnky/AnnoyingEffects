@@ -7,7 +7,9 @@
 		"ServerPlayerEntityMixin",
 		"ClientPlayerEntityMixin",
 		"PlayerEntityMixin",
-		"MinecraftClientMixin"
+		"MinecraftClientMixin",
+		"ChatScreenMixin",
+		"ChatHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
