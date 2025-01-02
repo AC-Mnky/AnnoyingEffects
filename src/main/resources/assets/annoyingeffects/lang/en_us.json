@@ -38,6 +38,7 @@
   "messages.annoyingeffects.crafting_fatigue": "Your are too tired to craft",
   "messages.annoyingeffects.insomnia": "Your body refuses to sleep",
   "messages.annoyingeffects.disable_inventory": "You cannot find your bag",
+  "messages.annoyingeffects.voiceless": "You cannot speak",
   "messages.annoyingeffects.water_filling.warning": "Water is reminding you of something...",
   "messages.annoyingeffects.water_filling.danger": "NO MORE WATER...",
   "messages.annoyingeffects.water_filling.water": "................"
