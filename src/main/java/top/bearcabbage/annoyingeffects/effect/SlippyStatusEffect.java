@@ -11,6 +11,8 @@ public class SlippyStatusEffect extends StatusEffect {
                 0x98D982); // 显示的颜色
     }
 
+    public static boolean globalSlippyFlag = false;
+
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {

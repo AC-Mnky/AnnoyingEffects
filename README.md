@@ -32,8 +32,8 @@
 | 冷冷冷（ReallyCold） | 冻住（类似于细雪）。无法跳跃。                              | Damage | 6/120                 | ✅       | 细雪桶      |
 | 热热热（ReallyHot） | 燃烧。                                                     | Damage | 3/120                  | ✅       | 岩浆桶      |
 | 复读（Repeater）   | 你会重复上一个人说的话。                                   | Joke | 120/600                 | ✅ | 红石中继器    |
-| 分裂（Schizophrenia） | 你的视角原点和模型渲染位置向东平移2。                      | SevereHandicap | 60/1200                 |          | 裂缝       |
-| 脚滑（Slippy）  | 摩擦力和加速度减小（类似于在冰面上走）。                   | Adaptable | 60/600                  |          | 冰块       |
+| 分裂（Schizophrenia） | 你的视角原点和模型渲染位置向东平移2。                      | SevereHandicap | 60/1200                 | ❌难以实现 | 裂缝       |
+| 脚滑（Slippy）  | 摩擦力和加速度减小（类似于在冰面上走）。                   | Adaptable | 60/600                  | ✅ | 冰块       |
 | 旋转（Spin）       | 你会一直逆时针旋转。                                       | SevereHandicap | 30/600                  | ✅ | 🌀       |
 | 交换（Swapping hands） | 每隔20t交换主副手物品。                                    | SevereHandicap | 30/600              | ✅ | ✋↔️🤚    |
 | 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 | ✅ | 标靶       |
