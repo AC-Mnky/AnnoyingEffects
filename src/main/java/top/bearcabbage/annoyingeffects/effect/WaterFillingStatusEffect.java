@@ -54,6 +54,9 @@ public class WaterFillingStatusEffect extends StatusEffect {
                     world.breakBlock(p, true);
                 }
             }
+            if(p.getY() >= 192 && world.getBlockState(p).getBlock() == Blocks.WATER){
+                world.setBlockState(p, Blocks.FROSTED_ICE.getDefaultState());
+            }
 
         }
         return true;

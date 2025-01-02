@@ -126,7 +126,7 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(TARGETED, pack(120, 600));
 			STATUS_EFFECT_MAP.put(VOICELESS, pack(120, 600));
 			STATUS_EFFECT_MAP.put(VULNERABLE, pack(120, 600));
-			STATUS_EFFECT_MAP.put(WATER_FILLING, pack(20, 100));
+			STATUS_EFFECT_MAP.put(WATER_FILLING, pack(0, 15));
 
 			STATUS_EFFECT_MAP.put(BLINDNESS, pack(60, 600));
 			STATUS_EFFECT_MAP.put(DARKNESS, pack(60, 600));
