@@ -43,6 +43,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             int packed = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
             int duration = (packed >> 16) * 20;
             int interval = (packed & 0xffff) * 20;
+
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
             if(effect.equals(AnnoyingEffects.WATER_FILLING)){
                  if(!player.isTouchingWaterOrRain() || timer.getTick(TimerType.EXPOSURE_TO_WATER) < 1500) continue;
@@ -50,7 +51,8 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             }
             if(effect.equals(AnnoyingEffects.CARROT_CURSE) && timer.getTick(TimerType.EAT_CARROT) > 0) continue;
             if(effect.equals(AnnoyingEffects.HORSELESS) && player.hasVehicle() && player.getVehicle() instanceof HorseEntity) interval /= 5;
-            if(random.nextInt(interval) <= amplifier){
+
+            if(duration > 0 && random.nextInt(interval) <= amplifier){
 //                player.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));
                 break;

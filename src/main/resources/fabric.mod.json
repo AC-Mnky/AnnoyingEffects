@@ -3,13 +3,13 @@
 	"id": "annoyingeffects",
 	"version": "${version}",
 	"name": "AnnoyingEffects",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A mod with annoying status effects.",
 	"authors": [
-		"Me!"
+		"Mnky, BearCabbage"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/AC-Mnky/AnnoyingEffects"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/annoyingeffects/icon.png",
