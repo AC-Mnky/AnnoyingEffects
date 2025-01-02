@@ -3,6 +3,8 @@
 	"package": "top.bearcabbage.annoyingeffects.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"BlockMixin",
+		"EntityMixin",
 		"CreeperEntityMixin",
 		"ServerPlayerEntityMixin",
 		"ClientPlayerEntityMixin",
