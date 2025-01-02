@@ -47,7 +47,8 @@ public class WaterFillingStatusEffect extends StatusEffect {
             Block block = blockState.getBlock();
 
             if(!blockState.isFullCube(world.getChunkAsView(p.getX() >> 4, p.getZ() >> 4), p) &&
-                    !(blockState.getFluidState().getFluid().matchesType(Fluids.WATER)))
+                    !(blockState.getFluidState().getFluid().matchesType(Fluids.WATER)) &&
+                    !world.getDimension().ultrawarm())
             {
                 float hardness = block.getHardness();
                 if(hardness <= 4F - distance || block instanceof DoorBlock || block instanceof BellBlock){
