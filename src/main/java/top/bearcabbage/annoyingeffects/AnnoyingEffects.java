@@ -119,7 +119,7 @@ public class AnnoyingEffects implements ModInitializer {
 			STATUS_EFFECT_MAP.put(REALLY_COLD, pack(6, 120));
 			STATUS_EFFECT_MAP.put(REALLY_HOT, pack(3, 120));
 			STATUS_EFFECT_MAP.put(REPEATER, pack(120, 600));
-			STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(60, 1200));
+			STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(-1, -1));
 			STATUS_EFFECT_MAP.put(SLIPPY, pack(60, 600));
 			STATUS_EFFECT_MAP.put(SPIN, pack(30, 600));
 			STATUS_EFFECT_MAP.put(SWAPPING_HANDS, pack(30, 600));
