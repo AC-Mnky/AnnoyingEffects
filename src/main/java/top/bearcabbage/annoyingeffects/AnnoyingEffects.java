@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
@@ -180,7 +181,8 @@ public class AnnoyingEffects implements ModInitializer {
 				return ActionResult.FAIL;
 			}
 			if(player.hasStatusEffect(DISABLE_SLEEPING) && !player.isSpectator() &&
-					(blockState.getBlock().getName().getString().contains("Bed"))) { //// 这段我自己都绷不住了（是的我知道基岩）  --AC
+					blockState.getBlock() instanceof BedBlock){
+//					(blockState.getBlock().getName().getString().contains("Bed"))) { //// 这段我自己都绷不住了（是的我知道基岩）  --AC
 				player.sendMessage(Text.translatable("messages.annoyingeffects.insomnia"), true);
 				return ActionResult.FAIL;
 			}

@@ -5,14 +5,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.network.packet.s2c.play.PlaySoundS2CPacket;
 import net.minecraft.predicate.entity.LocationPredicate;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+
+import static net.minecraft.entity.effect.StatusEffects.FIRE_RESISTANCE;
 
 public class DisableSleepingStatusEffect extends StatusEffect {
     public static final Double PROBABILITY = 0.01;
@@ -39,7 +36,7 @@ public class DisableSleepingStatusEffect extends StatusEffect {
         if (entity instanceof ServerPlayerEntity serverPlayer && random<PROBABILITY
                 && LocationPredicate.Builder.create().canSeeSky(true).build().test(serverPlayer.getServerWorld(),serverPlayer.getX(),serverPlayer.getY(),serverPlayer.getZ())){
             PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM,serverPlayer.getServerWorld());
-            phantom.setStatusEffect(new StatusEffectInstance(Registries.STATUS_EFFECT.getEntry(StatusEffects.FIRE_RESISTANCE.value()), StatusEffectInstance.INFINITE),null);
+            phantom.setStatusEffect(new StatusEffectInstance(FIRE_RESISTANCE, StatusEffectInstance.INFINITE),null);
             phantom.setPos(serverPlayer.getX(),serverPlayer.getY()+HEIGHT,serverPlayer.getZ());
             serverPlayer.getServerWorld().spawnEntity(phantom);
         }
