@@ -12,7 +12,7 @@
 | 引雷（Channeling） | （仅雷雨天）平均每20t有一道雷生成在周围（有一定概率劈到）。 | Damage, Adaptable, Terrachanging | 20/100（仅雷雨天）          | ✅       | ✅三叉戟        |
 | 火之精粹（Essence of fire / ChaoticExplosion） | 你会不停产生爆炸（平均50t）。                              | Damage, Terrachanging | 30/300         | ✅       | ✅加热符号       |
 | 我在哪？（Where am I? / ChaoticTeleportation） | 每隔50t触发一次紫颂果传送。                             | SevereHandicap | 15/300              | ✅       | ✅爆裂紫颂果      |
-| 抓狂（Mad miner / ControlsAlwaysDig） | 你会一直挖掘。                                             | Adaptable | 30/300             | ▶️很难右键！ | ✅红色稿子       |
+| 抓狂（Mad miner / ControlsAlwaysDig） | 你会一直挖掘。                                             | Adaptable | 30/300            | ✅         | ✅红色稿子       |
 | 想上厕所（Where is the toilet? / ControlsAlwaysJump） | 你会不停跳跃。                                             | Adaptable | 60/600                  | ✅       | ✅马桶         |
 | 抽搐（Twitching / ControlsChaoticUse） | 你会随机地使用主手物品（平均50t）。                        | HighlyAdaptable | 120/600             | ✅       | ✅👋         |
 | 我是螃蟹（I am a crab / ControlsCrab） | 你不能前进或后退。                                         | HighlyAdaptable | 120/600           | ✅       | ✅🦀         |
