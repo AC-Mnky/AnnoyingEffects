@@ -21,21 +21,24 @@ public class MouseMixin {
     private void injectMouseTickForSpinAndOppressed(CallbackInfo ci){
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         if(player == null || !player.isAlive()) return;
-        double deltaYaw = 0F;
-        double deltaPitch = 0F;
+
+
         if(player.hasStatusEffect(AnnoyingEffects.SPIN)){
+            double deltaYaw = 0F;
             int amplifier = Objects.requireNonNull(player.getStatusEffect(AnnoyingEffects.SPIN)).getAmplifier();
 //            float yaw = player.getYaw();
             deltaYaw += -2F * (1 + amplifier);
 //            player.setYaw(yaw);
+            player.changeLookDirection(deltaYaw / 0.15F, 0F);
         }
         if(player.hasStatusEffect(AnnoyingEffects.OPPRESSED)){
+            double deltaPitch = 0F;
 //            int amplifier = Objects.requireNonNull(player.getStatusEffect(AnnoyingEffects.OPPRESSED)).getAmplifier();
             float pitch = player.getPitch();
-            if(pitch < 0F) deltaPitch = -pitch;
-            if(pitch < 45F) deltaPitch += 0.2F * (45F - pitch);
+            if(pitch < 45F) deltaPitch += 45F - pitch;
+            player.changeLookDirection(0F, deltaPitch / 0.15F);
         }
-        player.changeLookDirection(deltaYaw / 0.15F, deltaPitch / 0.15F);
+
 
     }
 }
