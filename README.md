@@ -28,13 +28,13 @@
 | 沉重（Heaviness）  | 重力增加（跳跃高度降低）。增加掉落伤害。水中会下沉。水不再能完全消除掉落伤害。使用鞘翅时会下落更快。 | Adaptable | 60/600                  | ▶️水、鞘翅  | ✅铁砧       |
 | 没有马（Horseless） | 周围的马会爆炸。                                           | Subtle | 5/300（骑马：60）      | ✅       | ✅禁止马      |
 | 时运不济（Misfortune） | 你挖矿掉的东西变少。                                       | Subtle | /                               | ❌难以实现   | ✅禁止钻石     |
-| 压迫（Oppressed）  | 你必须低着头，视线和竖直方向夹角不能超过45度。             | Adaptable | 30/600                  | ▶️晕    | ✅拴绳       |
+| 压迫（Oppressed）  | 你必须低着头，视线和竖直方向夹角不能超过45度。             | Adaptable | 30/600                  | ✅   | ✅拴绳       |
 | 冷冷冷（ReallyCold） | 冻住（类似于细雪）。无法跳跃。                              | Damage | 6/120                 | ✅       | ✅细雪桶      |
 | 热热热（ReallyHot） | 燃烧。                                                     | Damage | 3/120                  | ✅       | ✅岩浆桶      |
 | 复读（Repeater）   | 你会重复上一个人说的话。                                   | Joke | 120/600                 | ✅ | ✅红石中继器    |
 | 分裂（Schizophrenia） | 你的视角原点和模型渲染位置向东平移2。                      | SevereHandicap | /                 | ❌难以实现     | ✅裂缝       |
 | 脚滑（Slippy）  | 摩擦力和加速度减小（类似于在冰面上走）。                   | Adaptable | 60/600                  |   ✅     | ✅冰块       |
-| 旋转（Spin）       | 你会一直逆时针旋转。                                       | SevereHandicap | 30/600                  | ▶️晕 | ✅🌀       |
+| 旋转（Spin）       | 你会一直逆时针旋转。                                       | SevereHandicap | 30/600                  | ✅ | ✅🌀       |
 | 交换（Swapping hands） | 每隔20t交换主副手物品。                                    | SevereHandicap | 30/600              | ✅ | ✅✋↔️🤚    |
 | 靶子（Targeted）   | 吸引周围所有弹射物，包括你自己的。                         | Subtle | 120/600                 | ✅ | ✅标靶       |
 | 失声（Voiceless） | 你无法发出聊天。                                           | Joke | 120/600                 | ✅ | ✅幽匿尖啸体    |

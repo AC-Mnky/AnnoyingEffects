@@ -20,10 +20,10 @@ public class OppressedStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        float pitch = entity.getPitch();
-        if(pitch < 0F) pitch = 0F;
-        if(pitch < 45F) pitch += 0.5F * (45F - pitch);
-        entity.setPitch(pitch);
+//        float pitch = entity.getPitch();
+//        if(pitch < 0F) pitch = 0F;
+//        if(pitch < 45F) pitch += 0.5F * (45F - pitch);
+//        entity.setPitch(pitch);
         return true;
     }
 }
