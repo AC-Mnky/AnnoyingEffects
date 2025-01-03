@@ -6,8 +6,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import top.bearcabbage.annoyingeffects.TimerType;
-import top.bearcabbage.annoyingeffects.WithTimer;
+import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
 public class CarrotCurseStatusEffect extends StatusEffect {
     public CarrotCurseStatusEffect() {
@@ -15,6 +14,8 @@ public class CarrotCurseStatusEffect extends StatusEffect {
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
                 0x98D982); // 显示的颜色
     }
+
+    public static final NoSavePlayerData<Integer> CarrotTicks = new NoSavePlayerData<>(10000);
 
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
     @Override
@@ -26,9 +27,9 @@ public class CarrotCurseStatusEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(!entity.isPlayer()) return false;
+        if(entity.getWorld().isClient()) return true;
         PlayerEntity player  = (PlayerEntity) entity;
-        WithTimer timer = (WithTimer) player;
-        if(timer.getTick(TimerType.EAT_CARROT) > 0) return false;
+        if(CarrotTicks.get(player) > 0) return false;
         player.giveItemStack(new ItemStack(Items.POISONOUS_POTATO, 64));
         return true;
     }

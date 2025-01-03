@@ -41,5 +41,6 @@
   "messages.annoyingeffects.voiceless": "You cannot speak",
   "messages.annoyingeffects.water_filling.warning": "Water is reminding you of something...",
   "messages.annoyingeffects.water_filling.danger": "NO MORE WATER...",
+  "messages.annoyingeffects.water_filling.safe": "Keep dry.",
   "messages.annoyingeffects.water_filling.water": "................"
 }

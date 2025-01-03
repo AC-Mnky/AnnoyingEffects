@@ -13,6 +13,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
 public class WaterFillingStatusEffect extends StatusEffect {
     public WaterFillingStatusEffect() {
@@ -20,6 +21,8 @@ public class WaterFillingStatusEffect extends StatusEffect {
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
                 0x98D982); // 显示的颜色
     }
+
+    public static final NoSavePlayerData<Integer> WaterTicks = new NoSavePlayerData<>(0);
 
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
     @Override

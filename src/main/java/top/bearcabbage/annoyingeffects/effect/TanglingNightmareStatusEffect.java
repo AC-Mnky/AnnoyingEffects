@@ -11,8 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
-import top.bearcabbage.annoyingeffects.TimerType;
-import top.bearcabbage.annoyingeffects.WithTimer;
 
 public class TanglingNightmareStatusEffect extends StatusEffect {
     public TanglingNightmareStatusEffect() {
@@ -36,7 +34,6 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
         ServerPlayerEntity player = (ServerPlayerEntity) entity;
         ServerWorld world = (ServerWorld) player.getWorld();
         StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
-        WithTimer timer = (WithTimer) player;
         Random random = Random.create(random_seed);
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
             if(player.hasStatusEffect(effect)) continue;
@@ -46,10 +43,10 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
 
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
             if(effect.equals(AnnoyingEffects.WATER_FILLING)){
-                 if(!player.isTouchingWaterOrRain() || timer.getTick(TimerType.EXPOSURE_TO_WATER) < 1500) continue;
-                 duration = timer.getTick(TimerType.EXPOSURE_TO_WATER) / 5;
+                 if(!player.isTouchingWaterOrRain() || WaterFillingStatusEffect.WaterTicks.get(player) < 1500) continue;
+                 duration = WaterFillingStatusEffect.WaterTicks.get(player) / 5;
             }
-            if(effect.equals(AnnoyingEffects.CARROT_CURSE) && timer.getTick(TimerType.EAT_CARROT) > 0) continue;
+            if(effect.equals(AnnoyingEffects.CARROT_CURSE) && CarrotCurseStatusEffect.CarrotTicks.get(player) > 0) continue;
             if(effect.equals(AnnoyingEffects.HORSELESS) && player.hasVehicle() && player.getVehicle() instanceof HorseEntity) interval /= 5;
 
             if(duration > 0 && random.nextInt(interval) <= amplifier){

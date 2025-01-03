@@ -4,8 +4,6 @@ package top.bearcabbage.annoyingeffects.mixin;
 import net.minecraft.client.*;
 
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.thread.ReentrantThreadExecutor;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
-import top.bearcabbage.annoyingeffects.TimerType;
-import top.bearcabbage.annoyingeffects.WithTimer;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runnable> implements WindowEventHandler {
@@ -28,8 +24,6 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
     @Unique
     private boolean diggingFlag = false;
 
-    @Shadow @Nullable
-    public ClientWorld world;
     @Shadow @Nullable
     public ClientPlayerEntity player;
     @Shadow
@@ -71,21 +65,7 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
                 this.doItemUse();
             }
         }
-        if(this.player!=null && this.player.hasStatusEffect(AnnoyingEffects.TANGLING_NIGHTMARE) &&
-                ((WithTimer)this.player).getTick(TimerType.EXPOSURE_TO_WATER) > 1000 &&
-                !this.player.hasStatusEffect(AnnoyingEffects.WATER_FILLING) &&
-                this.player.isTouchingWaterOrRain()){
-            this.player.sendMessage(Text.translatable("messages.annoyingeffects.water_filling.warning"), true);
-        }
-        if(this.player!=null && this.player.hasStatusEffect(AnnoyingEffects.TANGLING_NIGHTMARE) &&
-                ((WithTimer)this.player).getTick(TimerType.EXPOSURE_TO_WATER) > 1500){
-            if(this.player.hasStatusEffect(AnnoyingEffects.WATER_FILLING)) {
-                this.player.sendMessage(Text.translatable("messages.annoyingeffects.water_filling.water"), true);
-            } else{
-                this.player.sendMessage(Text.translatable("messages.annoyingeffects.water_filling.danger"), true);
-            }
 
-        }
 
     }
 
