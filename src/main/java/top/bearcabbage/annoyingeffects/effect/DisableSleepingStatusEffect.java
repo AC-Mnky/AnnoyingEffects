@@ -12,7 +12,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import static net.minecraft.entity.effect.StatusEffects.FIRE_RESISTANCE;
 
 public class DisableSleepingStatusEffect extends StatusEffect {
-    public static final Double PROBABILITY = 0.01;
+    public static final int AVERAGE_SPAWN_INTERVAL = 300;
     public static final Double HEIGHT = 10.0;
     public DisableSleepingStatusEffect() {
         super(
@@ -32,11 +32,11 @@ public class DisableSleepingStatusEffect extends StatusEffect {
 //        if(entity.getRandom().nextInt(20)==0 && entity.isSleeping() && !entity.getWorld().isClient){
 //            entity.wakeUp();
 //        }
-        double random = Math.random();
-        if (entity instanceof ServerPlayerEntity serverPlayer && random<PROBABILITY
+//        double random = Math.random();
+        if (entity instanceof ServerPlayerEntity serverPlayer && entity.getRandom().nextInt(AVERAGE_SPAWN_INTERVAL)<=amplifier
                 && LocationPredicate.Builder.create().canSeeSky(true).build().test(serverPlayer.getServerWorld(),serverPlayer.getX(),serverPlayer.getY(),serverPlayer.getZ())){
             PhantomEntity phantom = new PhantomEntity(EntityType.PHANTOM,serverPlayer.getServerWorld());
-            phantom.setStatusEffect(new StatusEffectInstance(FIRE_RESISTANCE, StatusEffectInstance.INFINITE),null);
+            phantom.setStatusEffect(new StatusEffectInstance(FIRE_RESISTANCE, 2400),null);
             phantom.setPos(serverPlayer.getX(),serverPlayer.getY()+HEIGHT,serverPlayer.getZ());
             serverPlayer.getServerWorld().spawnEntity(phantom);
         }

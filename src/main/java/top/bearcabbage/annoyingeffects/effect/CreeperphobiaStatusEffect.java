@@ -10,9 +10,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.random.Random;
 
 public class CreeperphobiaStatusEffect extends StatusEffect {
-    public static final Double PROBABILITY = 0.01;
+    public static final int AVERAGE_SOUND_INTERVAL = 1000;
 
     public CreeperphobiaStatusEffect() {
         super(
@@ -29,9 +30,9 @@ public class CreeperphobiaStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        double random = Math.random();
-        if (entity instanceof ServerPlayerEntity serverPlayer && random<PROBABILITY){
-            serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(SoundEvents.ENTITY_CREEPER_PRIMED), SoundCategory.HOSTILE, serverPlayer.getX()+random-0.5,serverPlayer.getY()+random-0.5,serverPlayer.getZ()+random-0.5, 1.0F, 1.0F, 0));
+        Random random = entity.getRandom();
+        if (entity instanceof ServerPlayerEntity serverPlayer && random.nextInt(AVERAGE_SOUND_INTERVAL)<=amplifier){
+            serverPlayer.networkHandler.sendPacket(new PlaySoundS2CPacket(Registries.SOUND_EVENT.getEntry(SoundEvents.ENTITY_CREEPER_PRIMED), SoundCategory.HOSTILE, serverPlayer.getX()+3*random.nextGaussian(),serverPlayer.getY()+3*random.nextGaussian(),serverPlayer.getZ()+random.nextGaussian(), 1.0F, 1.0F, 0));
         }
         return true;
     }
