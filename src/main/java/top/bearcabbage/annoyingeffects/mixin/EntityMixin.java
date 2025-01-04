@@ -8,8 +8,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.entity.EntityLike;
@@ -107,9 +105,9 @@ public abstract class EntityMixin implements EntityLike{
         if (!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
         double vy = this.trueVelocity.y;
         float maxFallDistance = 2F * (float)Math.pow(vy, 2F);
-        if(entity instanceof ServerPlayerEntity player && (maxFallDistance > 0.5 || entity.fallDistance > 0.5)){
-            player.sendMessage(Text.of(maxFallDistance + " " + entity.fallDistance + (entity.isTouchingWater() ? " water":"")), false);
-        }
+//        if(entity instanceof ServerPlayerEntity player && (maxFallDistance > 0.5 || entity.fallDistance > 0.5)){
+//            player.sendMessage(Text.of(maxFallDistance + " " + entity.fallDistance + (entity.isTouchingWater() ? " water":"")), false);
+//        }
 
         entity.fallDistance = Math.min(maxFallDistance, entity.fallDistance);
         ci.cancel();
