@@ -20,8 +20,7 @@ public class ReallyHotStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-
-        entity.setFireTicks(20);
+        if(entity.getFireTicks() <= 260) entity.setFireTicks(entity.getFireTicks() + 40);
         return true;
     }
 }
