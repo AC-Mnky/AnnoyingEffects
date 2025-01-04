@@ -1,9 +1,13 @@
 package top.bearcabbage.annoyingeffects.mixin;
 
 
+import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +37,16 @@ public abstract class EntityMixin implements EntityLike{
     )
     private void injectBaseTickForTrueVelocity(CallbackInfo ci){
         this.trueVelocity = this.velocity;
+    }
+
+    @Inject(
+            method = {"baseTick"},
+            at = {@At("RETURN")}
+    )
+    private void injectBaseTickForHeaviness(CallbackInfo ci){
+        if (!((EntityLike) this instanceof LivingEntity entity)) return;
+        if (!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
+        entity.setVelocity(entity.getVelocity().add(0F, -0.15F, 0F));
     }
 
 //    @Unique
@@ -78,10 +92,10 @@ public abstract class EntityMixin implements EntityLike{
         }
     }
 
-//    @Shadow
-//    protected Object2DoubleMap<TagKey<Fluid>> fluidHeight;
-//    @Shadow
-//    protected boolean touchingWater;
+    @Shadow
+    protected Object2DoubleMap<TagKey<Fluid>> fluidHeight;
+    @Shadow
+    protected boolean touchingWater;
 
     @Inject(
             method = {"limitFallDistance"},
@@ -92,7 +106,7 @@ public abstract class EntityMixin implements EntityLike{
         if (!((EntityLike) this instanceof LivingEntity entity)) return;
         if (!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
         double vy = this.trueVelocity.y;
-        float maxFallDistance = 4F * (float)Math.pow(vy, 2F);
+        float maxFallDistance = 2F * (float)Math.pow(vy, 2F);
         if(entity instanceof ServerPlayerEntity player && (maxFallDistance > 0.5 || entity.fallDistance > 0.5)){
             player.sendMessage(Text.of(maxFallDistance + " " + entity.fallDistance + (entity.isTouchingWater() ? " water":"")), false);
         }
@@ -121,30 +135,32 @@ public abstract class EntityMixin implements EntityLike{
         ci.cancel();
     }
 
-//    @Inject(
-//            method = {"updateWaterState"},
-//            at = {@At("HEAD")},
-//            cancellable = true
-//    )
-//    private void injectUpdateWaterStateForHeaviness(CallbackInfoReturnable<Boolean> ci){
-//        this.fluidHeight.clear();
-//        if(!((EntityLike)this instanceof LivingEntity entity)) return;
-//        if(!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
-//
-//
-//        if (entity.updateMovementInFluid(FluidTags.WATER, 0.014)) {
-////            this.onLanding();
-//            this.touchingWater = true;
-//            entity.extinguish();
-//        } else {
-//            this.touchingWater = false;
-//        }
-//
-//
-//        double d = entity.getWorld().getDimension().ultrawarm() ? 0.007 : 0.0023333333333333335;
-//        boolean bl = entity.updateMovementInFluid(FluidTags.LAVA, d);
-//        ci.setReturnValue(entity.isTouchingWater() || bl);
-//    }
+    @Inject(
+            method = {"updateWaterState"},
+            at = {@At("HEAD")},
+            cancellable = true
+    )
+    private void injectUpdateWaterStateForHeaviness(CallbackInfoReturnable<Boolean> ci){
+        if(!((EntityLike)this instanceof LivingEntity entity)) return;
+        if(!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
+
+        this.fluidHeight.clear();
+
+
+        if (entity.updateMovementInFluid(FluidTags.WATER, 0.007)) {
+            entity.onLanding();
+            this.touchingWater = true;
+            entity.extinguish();
+
+        } else {
+            this.touchingWater = false;
+        }
+
+
+        double d = entity.getWorld().getDimension().ultrawarm() ? 0.007 : 0.0023333333333333335;
+        boolean bl = entity.updateMovementInFluid(FluidTags.LAVA, d);
+        ci.setReturnValue(entity.isTouchingWater() || bl);
+    }
 //    @Inject(
 //            method = {"checkWaterState"},
 //            at = {@At("HEAD")},

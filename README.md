@@ -25,7 +25,7 @@
 | 我的包呢？（Where is my bag? / DisableInventory） | 无法打开物品栏。（类似于下界传送门里。）                   | SevereHandicap | 15/150                  | ✅       | ✅禁止收纳袋    |
 | 失眠（Insomnia / DisableSleeping） | 你不能与床交互。幻翼会在露天时生成。                       | Handicap | 120/600                 | ✅    | ✅禁止床      |
 | 凝视（Gaze / EndermanHostile） | 吸引所有末影人的仇恨。                                     | Subtle | 120/600                 | ✅       | ✅末影人头     |
-| 沉重（Heaviness）  | 重力、摔落伤害增加。水中会下沉且有摔落伤害。鞘翅下落更快。 | Adaptable | 60/600                  | ▶️水、鞘翅  | ✅铁砧       |
+| 沉重（Heaviness）  | 在任何情况下下沉。重力、摔落伤害增加。水中有摔落伤害。 | Adaptable | 60/600                  | ✅ | ✅铁砧       |
 | 没有马（Horseless） | 周围的马会爆炸。                                           | Subtle | 5/300（骑马：60）      | ✅       | ✅禁止马      |
 | 时运不济（Misfortune） | 你挖矿掉的东西变少。                                       | Subtle | /                               | ❌难以实现   | ✅禁止钻石     |
 | 压迫（Oppressed）  | 你必须低着头，视线和竖直方向夹角不能超过45度。             | Adaptable, Unconfortable | 15/600            | ✅   | ✅拴绳       |
