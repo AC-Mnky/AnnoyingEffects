@@ -7,7 +7,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class SchizophreniaStatusEffect extends StatusEffect {
-    public static boolean isSchizophrenia = false;
     public static final double OFFSET_X = 2.0;
 
     public SchizophreniaStatusEffect() {

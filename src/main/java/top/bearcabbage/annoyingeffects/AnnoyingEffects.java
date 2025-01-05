@@ -199,7 +199,5 @@ public class AnnoyingEffects implements ModInitializer {
 				}
 			}
 		});
-
-		LOGGER.info("Hello Fabric world!");
 	}
 }

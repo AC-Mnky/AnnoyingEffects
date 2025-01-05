@@ -28,6 +28,5 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_MIRROR)) this.sidewaysSpeed *= -1F;
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_ALWAYS_JUMP)) this.jumping = true;
         if(this.hasStatusEffect(AnnoyingEffects.REALLY_COLD)) this.jumping = false;
-        SchizophreniaStatusEffect.isSchizophrenia = this.hasStatusEffect(AnnoyingEffects.SCHIZOPHRENIA);
     }
 }
