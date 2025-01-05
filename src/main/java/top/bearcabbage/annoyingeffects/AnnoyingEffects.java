@@ -98,53 +98,7 @@ public class AnnoyingEffects implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		loadStatusEffects();
-//		{
-//			STATUS_EFFECT_MAP.put(ANOREXIA, pack(200, 200));
-//			STATUS_EFFECT_MAP.put(CARROT_CURSE, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CHANNELING, pack(20, 100));
-//			STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, pack(30, 600));
-//			STATUS_EFFECT_MAP.put(CHAOTIC_TELEPORTATION, pack(5, 200));
-//			STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_DIG, pack(30, 300));
-//			STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(CONTROLS_CHAOTIC_USE, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CONTROLS_CRAB, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CONTROLS_SHORT_REACH, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CRAWLER, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(CREEPERPHOBIA, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(CURSE_OF_VANISHING, pack(50, 100));
-//			STATUS_EFFECT_MAP.put(DISABLE_CRAFTING_TABLE, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(DISABLE_INVENTORY, pack(10, 100));
-//			STATUS_EFFECT_MAP.put(DISABLE_SLEEPING, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(ENDERMAN_HOSTILE, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(HEAVINESS, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(HORSELESS, pack(5, 300));
-//			STATUS_EFFECT_MAP.put(MISFORTUNE, pack(-1, -1));
-//			STATUS_EFFECT_MAP.put(OPPRESSED, pack(10, 600));
-//			STATUS_EFFECT_MAP.put(REALLY_COLD, pack(3, 120));
-//			STATUS_EFFECT_MAP.put(REALLY_HOT, pack(3, 120));
-//			STATUS_EFFECT_MAP.put(REPEATER, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(-1, -1));
-//			STATUS_EFFECT_MAP.put(SLIPPY, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(SPIN, pack(10, 600));
-//			STATUS_EFFECT_MAP.put(SWAPPING_HANDS, pack(10, 200));
-//			STATUS_EFFECT_MAP.put(TARGETED, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(VOICELESS, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(VULNERABLE, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(WATER_FILLING, pack(-1, 15));
-//
-//			STATUS_EFFECT_MAP.put(BLINDNESS, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(DARKNESS, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(HUNGER, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(INFESTED, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(LEVITATION, pack(10, 200));
-//			STATUS_EFFECT_MAP.put(MINING_FATIGUE, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(NAUSEA, pack(10, 200));
-//			STATUS_EFFECT_MAP.put(SLOWNESS, pack(60, 600));
-//			STATUS_EFFECT_MAP.put(WEAKNESS, pack(120, 600));
-//			STATUS_EFFECT_MAP.put(WITHER, pack(10, 200));
-//
-//		}
+
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			ItemStack itemStack = player.getStackInHand(hand);
