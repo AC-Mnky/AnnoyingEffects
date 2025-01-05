@@ -8,10 +8,14 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.PhantomEntity;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
+import top.bearcabbage.annoyingeffects.EffectTags;
+
+import java.util.Set;
 
 import static net.minecraft.entity.effect.StatusEffects.FIRE_RESISTANCE;
 
 public class DisableSleepingStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public static final int AVERAGE_SPAWN_INTERVAL = 300;
     public static final Double HEIGHT = 10.0;
     public DisableSleepingStatusEffect() {

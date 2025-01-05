@@ -9,10 +9,13 @@ import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
+import top.bearcabbage.annoyingeffects.EffectTags;
 
 import java.util.EnumSet;
+import java.util.Set;
 
 public class ChannelingStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public ChannelingStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

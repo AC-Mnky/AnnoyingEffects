@@ -5,8 +5,12 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import top.bearcabbage.annoyingeffects.EffectTags;
+
+import java.util.Set;
 
 public class SchizophreniaStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public static final double OFFSET_X = 2.0;
 
     public SchizophreniaStatusEffect() {

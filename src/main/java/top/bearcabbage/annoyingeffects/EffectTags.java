@@ -1,6 +1,7 @@
 package top.bearcabbage.annoyingeffects;
 
 public enum EffectTags {
+    NONE,
     HANDICAP,
     DAMAGE,
     ADAPTABLE,

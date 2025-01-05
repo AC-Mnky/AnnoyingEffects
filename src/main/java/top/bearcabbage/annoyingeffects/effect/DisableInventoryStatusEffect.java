@@ -8,8 +8,12 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
+import top.bearcabbage.annoyingeffects.EffectTags;
+
+import java.util.Set;
 
 public class DisableInventoryStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public DisableInventoryStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

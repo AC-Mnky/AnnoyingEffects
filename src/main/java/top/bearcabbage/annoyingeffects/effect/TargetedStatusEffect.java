@@ -8,8 +8,12 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import top.bearcabbage.annoyingeffects.EffectTags;
+
+import java.util.Set;
 
 public class TargetedStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public TargetedStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

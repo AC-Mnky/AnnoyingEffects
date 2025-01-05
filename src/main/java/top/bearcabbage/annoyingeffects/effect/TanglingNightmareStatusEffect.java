@@ -10,9 +10,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.EffectTags;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
 
+import java.util.Set;
+
 public class TanglingNightmareStatusEffect extends StatusEffect {
+    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
     public TanglingNightmareStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
