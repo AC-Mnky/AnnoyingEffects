@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.effect.SchizophreniaStatusEffect;
 
 @Mixin(ClientPlayerEntity.class)
 public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
@@ -27,5 +28,6 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_MIRROR)) this.sidewaysSpeed *= -1F;
         if(this.hasStatusEffect(AnnoyingEffects.CONTROLS_ALWAYS_JUMP)) this.jumping = true;
         if(this.hasStatusEffect(AnnoyingEffects.REALLY_COLD)) this.jumping = false;
+        SchizophreniaStatusEffect.isSchizophrenia = this.hasStatusEffect(AnnoyingEffects.SCHIZOPHRENIA);
     }
 }

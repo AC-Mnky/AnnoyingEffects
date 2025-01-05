@@ -1,21 +1,24 @@
 {
-	"required": true,
-	"package": "top.bearcabbage.annoyingeffects.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"BlockMixin",
-		"EntityMixin",
-		"CreeperEntityMixin",
-		"ServerPlayerEntityMixin",
-		"ClientPlayerEntityMixin",
-		"PlayerEntityMixin",
-		"MinecraftClientMixin",
-		"ClientPlayerInteractionManagerMixin",
-		"MouseMixin",
-		"ChatScreenMixin",
-		"ChatHudMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "package": "top.bearcabbage.annoyingeffects.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockMixin",
+    "ChatHudMixin",
+    "ChatScreenMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "CreeperEntityMixin",
+    "EntityMixin",
+    "MinecraftClientMixin",
+    "MouseMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "WorldRendererMixin"
+  ]
 }
