@@ -42,5 +42,6 @@
   "messages.annoyingeffects.water_filling.warning": "水让你想起了什么……",
   "messages.annoyingeffects.water_filling.danger": "不要再接触水了……",
   "messages.annoyingeffects.water_filling.safe": "保持干燥。",
-  "messages.annoyingeffects.water_filling.water": "................"
+  "messages.annoyingeffects.water_filling.water": "................",
+  "death.fell.accident.water": "%1$s 过于沉重地摔到了水底"
 }
