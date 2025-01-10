@@ -11,12 +11,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.random.Random;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.SubtleStatusEffectTag;
 
-import java.util.Set;
-
-public class CreeperphobiaStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class CreeperphobiaStatusEffect extends StatusEffect implements SubtleStatusEffectTag {
     public static final int AVERAGE_SOUND_INTERVAL = 1000;
 
     public CreeperphobiaStatusEffect() {

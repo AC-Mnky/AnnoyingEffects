@@ -5,12 +5,9 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 
-import java.util.Set;
-
-public class SwappingHandsStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class SwappingHandsStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag {
     public SwappingHandsStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

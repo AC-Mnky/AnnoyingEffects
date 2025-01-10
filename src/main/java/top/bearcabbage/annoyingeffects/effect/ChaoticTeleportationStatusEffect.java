@@ -11,12 +11,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.event.GameEvent;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 
-import java.util.Set;
-
-public class ChaoticTeleportationStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class ChaoticTeleportationStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag, NightMareStatusEffectTag {
     public ChaoticTeleportationStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

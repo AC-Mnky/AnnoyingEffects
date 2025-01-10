@@ -14,13 +14,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.AdaptableStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.DamageStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.TerrachangingStatusEffectTag;
 import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
-import java.util.Set;
-
-public class WaterFillingStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class WaterFillingStatusEffect extends StatusEffect implements DamageStatusEffectTag, AdaptableStatusEffectTag, TerrachangingStatusEffectTag, NightMareStatusEffectTag {
     public final double REACH = 3F;
     public final double BREAKING_FORCE = 2.5F;
     public WaterFillingStatusEffect() {

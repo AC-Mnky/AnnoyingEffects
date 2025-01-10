@@ -3,12 +3,10 @@ package top.bearcabbage.annoyingeffects.effect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.JokeStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
 
-import java.util.Set;
-
-public class VoicelessStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class VoicelessStatusEffect extends StatusEffect implements JokeStatusEffectTag, NightMareStatusEffectTag {
     public VoicelessStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

@@ -9,12 +9,10 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
+import top.bearcabbage.annoyingeffects.effecttags.SubtleStatusEffectTag;
 
-import java.util.Set;
-
-public class HorselessStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class HorselessStatusEffect extends StatusEffect implements SubtleStatusEffectTag, NightMareStatusEffectTag {
     public HorselessStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

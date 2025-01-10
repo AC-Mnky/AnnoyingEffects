@@ -79,6 +79,7 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final RegistryEntry<StatusEffect> SPIN = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "spin"), new SpinStatusEffect());
 	public static final RegistryEntry<StatusEffect> SWAPPING_HANDS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "swapping_hands"), new SwappingHandsStatusEffect());
 	public static final RegistryEntry<StatusEffect> TANGLING_NIGHTMARE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "tangling_nightmare"), new TanglingNightmareStatusEffect());
+	public static final RegistryEntry<StatusEffect> TANGLING_DREAMS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "tangling_dreams"), new TanglingDreamsStatusEffect());
 	public static final RegistryEntry<StatusEffect> TARGETED = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "targeted"), new TargetedStatusEffect());
 	public static final RegistryEntry<StatusEffect> VOICELESS = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "voiceless"), new VoicelessStatusEffect());
 	public static final RegistryEntry<StatusEffect> VULNERABLE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "vulnerable"), new VulnerableStatusEffect());

@@ -7,12 +7,9 @@ import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.SubtleStatusEffectTag;
 
-import java.util.Set;
-
-public class EndermanHostileStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class EndermanHostileStatusEffect extends StatusEffect implements SubtleStatusEffectTag {
     public EndermanHostileStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

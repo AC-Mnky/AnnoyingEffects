@@ -6,13 +6,10 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.HandicapStatusEffectTag;
 import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
-import java.util.Set;
-
-public class CarrotCurseStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class CarrotCurseStatusEffect extends StatusEffect implements HandicapStatusEffectTag {
     public CarrotCurseStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的

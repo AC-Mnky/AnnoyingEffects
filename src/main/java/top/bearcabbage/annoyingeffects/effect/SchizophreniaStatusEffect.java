@@ -3,12 +3,9 @@ package top.bearcabbage.annoyingeffects.effect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import top.bearcabbage.annoyingeffects.EffectTags;
+import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 
-import java.util.Set;
-
-public class SchizophreniaStatusEffect extends StatusEffect {
-    public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+public class SchizophreniaStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag {
     public static final double OFFSET_X = 0.91F;
 
     public SchizophreniaStatusEffect() {
