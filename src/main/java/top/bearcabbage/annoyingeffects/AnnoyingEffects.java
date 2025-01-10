@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 import top.bearcabbage.annoyingeffects.effect.*;
 import top.bearcabbage.annoyingeffects.utils.ConfigReadAndWrite;
 
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -87,9 +86,9 @@ public class AnnoyingEffects implements ModInitializer {
 
 	public static final Map<RegistryEntry<StatusEffect>, Integer> STATUS_EFFECT_MAP = new HashMap<>();
 
-	private static int pack(int duration, int interval){
-		return (duration << 16) + interval;
-	}
+//	private static int pack(int duration, int interval){
+//		return (duration << 16) + interval;
+//	}
 
 
 	@Override
@@ -154,6 +153,10 @@ public class AnnoyingEffects implements ModInitializer {
 					StatusEffectInstance effect = stackHolder.popStatusEffect();
 					if (effect == null) break;
 					player.addStatusEffect(effect);
+				}
+
+				if(!player.isAlive()){
+					WaterFillingStatusEffect.WaterTicks.reset(player);
 				}
 			}
 		});

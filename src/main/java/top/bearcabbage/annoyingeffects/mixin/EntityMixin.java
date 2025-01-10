@@ -43,8 +43,13 @@ public abstract class EntityMixin implements EntityLike{
     )
     private void injectBaseTickForHeaviness(CallbackInfo ci){
         if (!((EntityLike) this instanceof LivingEntity entity)) return;
-        if (!entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) return;
-        entity.setVelocity(entity.getVelocity().add(0F, -0.15F, 0F));
+        if (entity.hasStatusEffect(AnnoyingEffects.HEAVINESS)) {
+            entity.setVelocity(entity.getVelocity().add(0F, -0.15F, 0F));
+        }
+        else if(entity.hasStatusEffect(AnnoyingEffects.WATER_FILLING)){
+            entity.setVelocity(entity.getVelocity().add(0F, -0.03F, 0F));
+        }
+
     }
 
 //    @Unique

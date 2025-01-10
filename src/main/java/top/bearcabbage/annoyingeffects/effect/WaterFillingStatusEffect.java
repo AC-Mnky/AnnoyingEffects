@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -20,6 +21,8 @@ import java.util.Set;
 
 public class WaterFillingStatusEffect extends StatusEffect {
     public static final Set<EffectTags> tags = Set.of(EffectTags.NONE);
+    public final double REACH = 3F;
+    public final double BREAKING_FORCE = 2.5F;
     public WaterFillingStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
@@ -37,36 +40,93 @@ public class WaterFillingStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if(!entity.isPlayer()) return false;
-        if (entity.getWorld().getDimension().ultrawarm()) return false;
-        if(entity.getWorld().isClient()) return true;
-        PlayerEntity player = (PlayerEntity) entity;
-        player.removeStatusEffect(StatusEffects.CONDUIT_POWER);
-        ServerWorld world = (ServerWorld) player.getWorld();
-        BlockPos pos = player.getBlockPos();
-        for(int dx=-5;dx<=5;++dx) for(int dy=-5;dy<=5;++dy) for(int dz=-5;dz<=5;++dz){
+        FlowableFluid fluid;
+        Block blockFluid;
+        if(entity.getWorld().getDimension().ultrawarm()) {
+            fluid = Fluids.FLOWING_LAVA;
+            blockFluid = Blocks.LAVA;
+        } else{
+            fluid = Fluids.FLOWING_WATER;
+            blockFluid = Blocks.WATER;
+        }
+        if(!(entity.getWorld() instanceof ServerWorld world)) return true;
+        if(entity instanceof PlayerEntity player){
+            player.removeStatusEffect(StatusEffects.CONDUIT_POWER);
+        }
+
+//        boolean createWaterSource = !entity.isSubmergedInWater();
+
+        BlockPos pos = entity.getBlockPos();
+        int range = (int)Math.floor(REACH+0.5);
+        for(int dx=-range;dx<=range;++dx) for(int dy=-range;dy<=range;++dy) for(int dz=-range;dz<=range;++dz){
             BlockPos p = pos.add(dx, dy, dz);
-            double distance = player.getEyePos().distanceTo(p.toCenterPos());
-            if(distance > 4F) continue;
-            placeWater(world, p);
+            double distance = entity.getEyePos().distanceTo(p.toCenterPos());
+            if(distance > REACH) continue;
+//            placeWater(world, p);
 
-            BlockState blockState = world.getBlockState(p);
-            Block block = blockState.getBlock();
-
-            if(!blockState.isFullCube(world.getChunkAsView(p.getX() >> 4, p.getZ() >> 4), p) &&
-                    !(blockState.getFluidState().getFluid().matchesType(Fluids.WATER)) &&
-                    !world.getDimension().ultrawarm())
             {
-                float hardness = block.getHardness();
-                if(hardness <= 4F - distance || block instanceof DoorBlock || block instanceof BellBlock){
-                    world.breakBlock(p, true);
+                BlockState blockState = world.getBlockState(p);
+                Block block = blockState.getBlock();
+
+                if(block instanceof FarmlandBlock || block instanceof DirtPathBlock){
+                    FarmlandBlock.setToDirt(null, blockState, world, p);
+                    blockState = world.getBlockState(p);
+                    block = blockState.getBlock();
                 }
+
+                if(block instanceof LeavesBlock){
+                    world.breakBlock(p, true);
+                    blockState = world.getBlockState(p);
+                    block = blockState.getBlock();
+                }
+
+                if(!blockState.isFullCube(world.getChunkAsView(p.getX() >> 4, p.getZ() >> 4), p) &&
+                        !(blockState.getFluidState().getFluid().matchesType(fluid)) &&
+                        !(block instanceof SoulSandBlock))
+                {
+                    float hardness = block.getHardness();
+                    if(hardness <= BREAKING_FORCE * (REACH - distance)){
+                        world.breakBlock(p, true);
+                    }
+                    blockState = world.getBlockState(p);
+                    block = blockState.getBlock();
+                }
+
+                if(block instanceof AirBlock
+//                        || block instanceof FluidBlock && blockState.getFluidState().getFluid().matchesType(fluid) && blockState.getFluidState().getLevel() > 1
+                ){
+                    BlockState flowing = blockFluid.getDefaultState().with(FluidBlock.LEVEL, 8);
+                    world.setBlockState(p, flowing);
+                    blockState = world.getBlockState(p);
+                    block = blockState.getBlock();
+                }
+
+//                if(createWaterSource && distance < 1){
+//                    world.setBlockState(p, Blocks.WATER.getDefaultState());
+//                    blockState = world.getBlockState(p);
+//                    block = blockState.getBlock();
+//                }
+
+
+
+//                if(p.getY() >= 192 && world.getBlockState(p).getBlock() == Blocks.WATER){
+//                    world.setBlockState(p, Blocks.FROSTED_ICE.getDefaultState());
+//                }
+
+//                break;
             }
-            if(p.getY() >= 192 && world.getBlockState(p).getBlock() == Blocks.WATER){
-                world.setBlockState(p, Blocks.FROSTED_ICE.getDefaultState());
-            }
+
+
 
         }
+
+//        if(!entity.isSubmergedInWater()){
+//            entity.getEyePos().;
+//            entity.setAir(entity.getAir() - 3);
+//            entity.addVelocity(0F, -0.15F, 0F);
+//            entity.setVelocity(entity.getVelocity().add(0F, -0.15F, 0F));
+//        }
+
         return true;
     }
 

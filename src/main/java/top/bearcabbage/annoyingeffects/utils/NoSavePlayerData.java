@@ -33,6 +33,12 @@ public class NoSavePlayerData<T> {
 
     public void set(PlayerEntity player, T value){this.set(player.getUuid(), value);}
 
+    public void reset(UUID player){
+        set(player, initialValue);
+    }
+
+    public void reset(PlayerEntity player){this.reset(player.getUuid());}
+
     public void clear(){
         map.clear();
     }
