@@ -85,7 +85,7 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final RegistryEntry<StatusEffect> VULNERABLE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "vulnerable"), new VulnerableStatusEffect());
 	public static final RegistryEntry<StatusEffect> WATER_FILLING = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "water_filling"), new WaterFillingStatusEffect());
 
-	public static final Map<RegistryEntry<StatusEffect>, Integer> STATUS_EFFECT_MAP = new HashMap<>();
+	public static final Map<RegistryEntry<StatusEffect>, Map<String, Integer>> STATUS_EFFECT_MAP = new HashMap<>();
 
 //	private static int pack(int duration, int interval){
 //		return (duration << 16) + interval;
@@ -164,52 +164,49 @@ public class AnnoyingEffects implements ModInitializer {
 	}
 
 	private void loadStatusEffects() {
-		STATUS_EFFECT_MAP.put(ANOREXIA, pack(config.getDurationAndInterval("anorexia", Map.of("duration", 200, "interval", 200))));
-		STATUS_EFFECT_MAP.put(CARROT_CURSE, pack(config.getDurationAndInterval("carrot_curse", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CHANNELING, pack(config.getDurationAndInterval("channeling", Map.of("duration", 20, "interval", 100))));
-		STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, pack(config.getDurationAndInterval("chaotic_explosion", Map.of("duration", 30, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CHAOTIC_TELEPORTATION, pack(config.getDurationAndInterval("chaotic_teleportation", Map.of("duration", 5, "interval", 200))));
-		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_DIG, pack(config.getDurationAndInterval("controls_always_dig", Map.of("duration", 30, "interval", 300))));
-		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, pack(config.getDurationAndInterval("controls_always_jump", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CONTROLS_CHAOTIC_USE, pack(config.getDurationAndInterval("controls_chaotic_use", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CONTROLS_CRAB, pack(config.getDurationAndInterval("controls_crab", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, pack(config.getDurationAndInterval("controls_mirror", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CONTROLS_SHORT_REACH, pack(config.getDurationAndInterval("controls_short_reach", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CRAWLER, pack(config.getDurationAndInterval("crawler", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CREEPERPHOBIA, pack(config.getDurationAndInterval("creeperphobia", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(CURSE_OF_VANISHING, pack(config.getDurationAndInterval("curse_of_vanishing", Map.of("duration", 50, "interval", 100))));
-		STATUS_EFFECT_MAP.put(DISABLE_CRAFTING_TABLE, pack(config.getDurationAndInterval("disable_crafting_table", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(DISABLE_INVENTORY, pack(config.getDurationAndInterval("disable_inventory", Map.of("duration", 10, "interval", 100))));
-		STATUS_EFFECT_MAP.put(DISABLE_SLEEPING, pack(config.getDurationAndInterval("disable_sleeping", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(ENDERMAN_HOSTILE, pack(config.getDurationAndInterval("enderman_hostile", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(HEAVINESS, pack(config.getDurationAndInterval("heaviness", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(HORSELESS, pack(config.getDurationAndInterval("horseless", Map.of("duration", 5, "interval", 300))));
-		STATUS_EFFECT_MAP.put(MISFORTUNE, pack(config.getDurationAndInterval("misfortune", Map.of("duration", -1, "interval", -1))));
-		STATUS_EFFECT_MAP.put(OPPRESSED, pack(config.getDurationAndInterval("oppressed", Map.of("duration", 10, "interval", 600))));
-		STATUS_EFFECT_MAP.put(REALLY_COLD, pack(config.getDurationAndInterval("really_cold", Map.of("duration", 3, "interval", 120))));
-		STATUS_EFFECT_MAP.put(REALLY_HOT, pack(config.getDurationAndInterval("really_hot", Map.of("duration", 3, "interval", 120))));
-		STATUS_EFFECT_MAP.put(REPEATER, pack(config.getDurationAndInterval("repeater", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, pack(config.getDurationAndInterval("schizophrenia", Map.of("duration", -1, "interval", -1))));
-		STATUS_EFFECT_MAP.put(SLIPPY, pack(config.getDurationAndInterval("slippy", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(SPIN, pack(config.getDurationAndInterval("spin", Map.of("duration", 10, "interval", 600))));
-		STATUS_EFFECT_MAP.put(SWAPPING_HANDS, pack(config.getDurationAndInterval("swapping_hands", Map.of("duration", 10, "interval", 200))));
-		STATUS_EFFECT_MAP.put(TARGETED, pack(config.getDurationAndInterval("targeted", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(VOICELESS, pack(config.getDurationAndInterval("voiceless", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(VULNERABLE, pack(config.getDurationAndInterval("vulnerable", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(WATER_FILLING, pack(config.getDurationAndInterval("water_filling", Map.of("duration", -1, "interval", 15))));
-		STATUS_EFFECT_MAP.put(BLINDNESS, pack(config.getDurationAndInterval("blindness", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(DARKNESS, pack(config.getDurationAndInterval("darkness", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(HUNGER, pack(config.getDurationAndInterval("hunger", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(INFESTED, pack(config.getDurationAndInterval("infested", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(LEVITATION, pack(config.getDurationAndInterval("levitation", Map.of("duration", 10, "interval", 200))));
-		STATUS_EFFECT_MAP.put(MINING_FATIGUE, pack(config.getDurationAndInterval("mining_fatigue", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(NAUSEA, pack(config.getDurationAndInterval("nausea", Map.of("duration", 10, "interval", 200))));
-		STATUS_EFFECT_MAP.put(SLOWNESS, pack(config.getDurationAndInterval("slowness", Map.of("duration", 60, "interval", 600))));
-		STATUS_EFFECT_MAP.put(WEAKNESS, pack(config.getDurationAndInterval("weakness", Map.of("duration", 120, "interval", 600))));
-		STATUS_EFFECT_MAP.put(WITHER, pack(config.getDurationAndInterval("wither", Map.of("duration", 10, "interval", 200))));
+		STATUS_EFFECT_MAP.put(ANOREXIA, config.getStatusParameters("anorexia", Map.of("duration", 200, "interval", 200,"weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CARROT_CURSE, config.getStatusParameters("carrot_curse", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(CHANNELING, config.getStatusParameters("channeling", Map.of("duration", 20, "interval", 100, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, config.getStatusParameters("chaotic_explosion", Map.of("duration", 30, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CHAOTIC_TELEPORTATION, config.getStatusParameters("chaotic_teleportation", Map.of("duration", 5, "interval", 200, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_DIG, config.getStatusParameters("controls_always_dig", Map.of("duration", 30, "interval", 300, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, config.getStatusParameters("controls_always_jump", Map.of("duration", 60, "interval", 600, "weak_duration", 30)));
+		STATUS_EFFECT_MAP.put(CONTROLS_CHAOTIC_USE, config.getStatusParameters("controls_chaotic_use", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(CONTROLS_CRAB, config.getStatusParameters("controls_crab", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, config.getStatusParameters("controls_mirror", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(CONTROLS_SHORT_REACH, config.getStatusParameters("controls_short_reach", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(CRAWLER, config.getStatusParameters("crawler", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(CREEPERPHOBIA, config.getStatusParameters("creeperphobia", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(CURSE_OF_VANISHING, config.getStatusParameters("curse_of_vanishing", Map.of("duration", 50, "interval", 100, "weak_duration", 25)));
+		STATUS_EFFECT_MAP.put(DISABLE_CRAFTING_TABLE, config.getStatusParameters("disable_crafting_table", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(DISABLE_INVENTORY, config.getStatusParameters("disable_inventory", Map.of("duration", 10, "interval", 100, "weak_duration", 10)));
+		STATUS_EFFECT_MAP.put(DISABLE_SLEEPING, config.getStatusParameters("disable_sleeping", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(ENDERMAN_HOSTILE, config.getStatusParameters("enderman_hostile", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(HEAVINESS, config.getStatusParameters("heaviness", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(HORSELESS, config.getStatusParameters("horseless", Map.of("duration", 5, "interval", 300, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(MISFORTUNE, config.getStatusParameters("misfortune", Map.of("duration", -1, "interval", -1, "weak_duration", -1)));
+		STATUS_EFFECT_MAP.put(OPPRESSED, config.getStatusParameters("oppressed", Map.of("duration", 10, "interval", 600, "weak_duration", 10)));
+		STATUS_EFFECT_MAP.put(REALLY_COLD, config.getStatusParameters("really_cold", Map.of("duration", 3, "interval", 120, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(REALLY_HOT, config.getStatusParameters("really_hot", Map.of("duration", 3, "interval", 120, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(REPEATER, config.getStatusParameters("repeater", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, config.getStatusParameters("schizophrenia", Map.of("duration", -1, "interval", -1, "weak_duration", -1)));
+		STATUS_EFFECT_MAP.put(SLIPPY, config.getStatusParameters("slippy", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(SPIN, config.getStatusParameters("spin", Map.of("duration", 10, "interval", 600, "weak_duration", 10)));
+		STATUS_EFFECT_MAP.put(SWAPPING_HANDS, config.getStatusParameters("swapping_hands", Map.of("duration", 10, "interval", 200, "weak_duration", 6)));
+		STATUS_EFFECT_MAP.put(TARGETED, config.getStatusParameters("targeted", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(VOICELESS, config.getStatusParameters("voiceless", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(VULNERABLE, config.getStatusParameters("vulnerable", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(WATER_FILLING, config.getStatusParameters("water_filling", Map.of("duration", -1, "interval", 15, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(BLINDNESS, config.getStatusParameters("blindness", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(DARKNESS, config.getStatusParameters("darkness", Map.of("duration", 60, "interval", 600, "weak_duration", 30)));
+		STATUS_EFFECT_MAP.put(HUNGER, config.getStatusParameters("hunger", Map.of("duration", 60, "interval", 600, "weak_duration", 30)));
+		STATUS_EFFECT_MAP.put(INFESTED, config.getStatusParameters("infested", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(LEVITATION, config.getStatusParameters("levitation", Map.of("duration", 10, "interval", 200, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(MINING_FATIGUE, config.getStatusParameters("mining_fatigue", Map.of("duration", 60, "interval", 600, "weak_duration", 30)));
+		STATUS_EFFECT_MAP.put(NAUSEA, config.getStatusParameters("nausea", Map.of("duration", 10, "interval", 200, "weak_duration", 0)));
+		STATUS_EFFECT_MAP.put(SLOWNESS, config.getStatusParameters("slowness", Map.of("duration", 60, "interval", 600, "weak_duration", 30)));
+		STATUS_EFFECT_MAP.put(WEAKNESS, config.getStatusParameters("weakness", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(WITHER, config.getStatusParameters("wither", Map.of("duration", 10, "interval", 600, "weak_duration", 0)));
 	}
 
-	private int pack(Map<String, Integer> durationAndInterval) {
-		return (durationAndInterval.get("duration") << 16) + durationAndInterval.get("interval");
-	}
 }

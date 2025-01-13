@@ -13,6 +13,8 @@ import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
 import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
 
+import java.util.Map;
+
 public class TanglingNightmareStatusEffect extends StatusEffect {
     public TanglingNightmareStatusEffect() {
         super(
@@ -39,9 +41,9 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
             if(this instanceof TanglingDreamsStatusEffect && effect.value() instanceof NightMareStatusEffectTag) continue;
             if(player.hasStatusEffect(effect)) continue;
-            int packed = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
-            int duration = (packed >> 16) * 20;
-            int interval = (packed & 0xffff) * 20;
+            Map<String, Integer> durationAndInterval = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
+            int duration = (this instanceof TanglingDreamsStatusEffect ? durationAndInterval.get("weak_duration") : durationAndInterval.get("duration")) * 20;
+            int interval = durationAndInterval.get("interval") * 20;
 
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
             if(effect.equals(AnnoyingEffects.WATER_FILLING)){

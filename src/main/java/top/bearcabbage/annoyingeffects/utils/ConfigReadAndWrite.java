@@ -73,7 +73,7 @@ public class ConfigReadAndWrite {
         return value != null ? value : defaultValue;
     }
 
-    public Map<String, Integer> getDurationAndInterval(String key, Map<String, Integer> defaultValue) {
+    public Map<String, Integer> getStatusParameters(String key, Map<String, Integer> defaultValue) {
         JsonObject value = jsonObject.getAsJsonObject(key);
         if (value == null) {
             set(key, defaultValue);
@@ -83,6 +83,7 @@ public class ConfigReadAndWrite {
         Map<String, Integer> result = new HashMap<>();
         result.put("duration", value.get("duration").getAsInt());
         result.put("interval", value.get("interval").getAsInt());
+        result.put("weak_duration", value.get("weak_duration").getAsInt());
         return result;
     }
     
