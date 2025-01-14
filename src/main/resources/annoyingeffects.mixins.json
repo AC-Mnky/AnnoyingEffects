@@ -4,14 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockMixin",
-    "ChatHudMixin",
-    "ChatScreenMixin",
-    "ClientPlayerEntityMixin",
-    "ClientPlayerInteractionManagerMixin",
     "CreeperEntityMixin",
     "EntityMixin",
-    "MinecraftClientMixin",
-    "MouseMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin"
   ],
@@ -19,6 +13,12 @@
     "defaultRequire": 1
   },
   "client": [
+    "ChatHudMixin",
+    "ChatScreenMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "MinecraftClientMixin",
+    "MouseMixin",
     "WorldRendererMixin"
   ]
 }

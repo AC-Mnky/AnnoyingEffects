@@ -28,7 +28,11 @@ public class VulnerableStatusEffect extends StatusEffect implements SubtleStatus
     @Override
     public void onEntityDamage(LivingEntity entity, int amplifier, DamageSource source, float amount) {
         float health = entity.getHealth();
-        if(health <= 1.0F) return;
-        entity.setHealth(Math.max(1.0F, health - amount * 0.5F * (1 + amplifier)));
+//        if(!(entity instanceof PlayerEntity)){
+//            entity.setHealth(health - amount * 0.5F * (1 + amplifier));
+//            return;
+//        }
+        if(health <= 0.01F) return;
+        entity.setHealth(Math.max(0.01F, health - amount * 0.5F * (1 + amplifier)));
     }
 }

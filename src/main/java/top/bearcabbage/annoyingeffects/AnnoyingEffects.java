@@ -155,6 +155,10 @@ public class AnnoyingEffects implements ModInitializer {
 					if (effect == null) break;
 					player.addStatusEffect(effect);
 				}
+				if(player.hasStatusEffect(INSTANT_HEALTH) && Objects.requireNonNull(player.getStatusEffect(INSTANT_HEALTH)).getAmplifier()==42) {
+					player.clearStatusEffects();
+					player.addStatusEffect(new StatusEffectInstance(INSTANT_HEALTH, 841, 42, true, false));
+				}
 
 				if(!player.isAlive()){
 					WaterFillingStatusEffect.WaterTicks.reset(player);
