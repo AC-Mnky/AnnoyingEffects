@@ -76,3 +76,4 @@ Annoying effects that may be added in the future:
 - (Only in the Overworld) Set your personal respawn point to the current location.
 - When opening a loot chest, all items in the chest turn into poisonous potatoes (enchantments are retained).
 - Zero gravity: Lose gravity.
+- Noclipped: No longer clip for a moment. (The duration is very short so the player usually do not suffocate.)

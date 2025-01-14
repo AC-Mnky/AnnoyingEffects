@@ -7,7 +7,8 @@
     "CreeperEntityMixin",
     "EntityMixin",
     "PlayerEntityMixin",
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "MobEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
