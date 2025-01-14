@@ -185,7 +185,7 @@ public class AnnoyingEffects implements ModInitializer {
 		STATUS_EFFECT_MAP.put(DISABLE_CRAFTING_TABLE, config.getStatusParameters("disable_crafting_table", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
 		STATUS_EFFECT_MAP.put(DISABLE_INVENTORY, config.getStatusParameters("disable_inventory", Map.of("duration", 10, "interval", 100, "weak_duration", 10)));
 		STATUS_EFFECT_MAP.put(DISABLE_SLEEPING, config.getStatusParameters("disable_sleeping", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
-		STATUS_EFFECT_MAP.put(ENDERMAN_HOSTILE, config.getStatusParameters("enderman_hostile", Map.of("duration", 120, "interval", 600, "weak_duration", 60)));
+		STATUS_EFFECT_MAP.put(ENDERMAN_HOSTILE, config.getStatusParameters("enderman_hostile", Map.of("duration", 120, "interval", 600, "weak_duration", 0)));
 		STATUS_EFFECT_MAP.put(HEAVINESS, config.getStatusParameters("heaviness", Map.of("duration", 60, "interval", 600, "weak_duration", 0)));
 		STATUS_EFFECT_MAP.put(HORSELESS, config.getStatusParameters("horseless", Map.of("duration", 5, "interval", 300, "weak_duration", 0)));
 		STATUS_EFFECT_MAP.put(MISFORTUNE, config.getStatusParameters("misfortune", Map.of("duration", -1, "interval", -1, "weak_duration", -1)));

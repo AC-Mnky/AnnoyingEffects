@@ -22,10 +22,10 @@ All effects are not explicitly stated and need to be discovered by the players t
 | Essence of fire / ChaoticExplosion | Continuously causes explosions (average 50 ticks). | Damage, Terrachanging, Nightmare | 0/30/600 | ✅❇️ | ✅ Alchemy Symbol for Fire |
 | Where am I? / ChaoticTeleportation | Triggers a chorus fruit teleport every 10 ticks. | SevereHandicap, Nightmare | 0/5/200 | ✅❇️ | ✅ Popped Chorus Fruit |
 | Mad miner / ControlsAlwaysDig | Continuously digs. | Adaptable, Terrachanging, Nightmare | 0/30/300 | ✅✔️ | ✅ Red Pickaxe |
-| Where is the toilet? / ControlsAlwaysJump | Continuously jumps. | Adaptable | 30/60/600 | ✅ | ✅ Toilet |
+| Where is the toilet? / ControlsAlwaysJump | Continuously jumps. | Adaptable | 30/60/600 | ✅❇️ | ✅ Toilet |
 | Twitching / ControlsChaoticUse | Randomly uses the main hand item (average 50 ticks). | HighlyAdaptable | 60/120/600 | ✅✔️ | ✅ 👋 |
-| I am a crab / ControlsCrab | Cannot move forward or backward. | HighlyAdaptable, Nightmare | 0/120/600 | ✅ | ✅ 🦀 |
-| Mirror / ControlsMirror | Left-click to move right, right-click to move left. | HighlyAdaptable | 60/120/600 | ✅ | ✅ □\|□ |
+| I am a crab / ControlsCrab | Cannot move forward or backward. | HighlyAdaptable, Nightmare | 0/120/600 | ✅❇️ | ✅ 🦀 |
+| Mirror / ControlsMirror | Left-click to move right, right-click to move left. | HighlyAdaptable | 60/120/600 | ✅❇️ | ✅ □\|□ |
 | Short arms / ControlsShortReach | Reduces reach distance by 2. | Adaptable | 60/120/600 | ✅✔️ | ✅ 🦖 |
 | Crawler | Crawls. | Adaptable, Nightmare | 0/60/600 | ✅✔️ | ✅ Trapdoor |
 | Creeper? / Creeperphobia | Creepers are no longer rendered. Randomly hears creeper explosion sounds. | Subtle | 60/120/600 | ✅✔️ | ✅ Creeper Head Front |
@@ -33,7 +33,7 @@ All effects are not explicitly stated and need to be discovered by the players t
 | Crafting fatigue / DisableCraftingTable | Cannot interact with crafting tables or crafting stations. | Handicap, Nightmare | 0/60/600 | ✅✔️ | ✅ No Crafting Table |
 | Where is my bag? / DisableInventory | Cannot open the inventory (similar to being in a Nether portal). | SevereHandicap | 10/10/100 | ✅✔️ | ✅ No Bundle |
 | Insomnia / DisableSleeping | Cannot interact with beds. Phantoms spawn in the open. | Handicap, Nightmare | 0/120/600 | ✅✔️ | ✅ No Bed |
-| Gaze / EndermanHostile | Attracts the hatred of all Endermen. | Subtle | 60/120/600 | ✅ | ✅ Enderman Head |
+| Gaze / EndermanHostile | Attracts the hatred of all Endermen. | Subtle | 0/120/600 | ✅ | ✅ Enderman Head |
 | Heaviness | Sinks in any situation. Increased gravity and fall damage. Fall damage in water. | Adaptable, Nightmare | 0/60/600 | ✅❇️ | ✅ Anvil |
 | Horseless | Horses around explode. | Subtle, Nightmare | 0/5/300 (riding: 60) | ✅ | ✅ No Horse |
 | Misfortune | Drops fewer items when mining. | Subtle, Nightmare | / | ❌ Hard to implement | ✅ No Diamonds |
@@ -66,7 +66,8 @@ Features that may be added in the future:
 - Color for every effect
 - Amplifier for every effect
 - Nightmare may apply effects with amplifier
-- Nightmare may be applied to mobs 
+- Nightmare may be applied to mobs
+- Config: you can turn on 'always nightmare' for better(?) game experience
 
 Annoying effects that may be added in the future:
 
@@ -77,3 +78,5 @@ Annoying effects that may be added in the future:
 - When opening a loot chest, all items in the chest turn into poisonous potatoes (enchantments are retained).
 - Zero gravity: Lose gravity.
 - Noclipped: No longer clip for a moment. (The duration is very short so the player usually do not suffocate.)
+- Infectivity: Status effects randomly spread to nearby living entities.
+- Weaving: Vanilla.
