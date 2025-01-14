@@ -63,6 +63,7 @@ All effects are not explicitly stated and need to be discovered by the players t
 Features that may be added in the future:
 
 - Potions
+- Color for every effect
 - Amplifier for every effect
 - Nightmare may apply effects with amplifier
 - Nightmare may be applied to mobs 

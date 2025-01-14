@@ -55,7 +55,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
 
             if(duration > 0 && random.nextInt(interval) <= amplifier){
 //                player.addStatusEffect(new StatusEffectInstance(effect, duration));
-                stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration));
+                stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration, 0, true, true));
                 break;
             }
         }
