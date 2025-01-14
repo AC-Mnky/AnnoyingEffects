@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -50,9 +51,12 @@ public class ChaoticTeleportationStatusEffect extends StatusEffect implements Se
                 if (entity instanceof FoxEntity) {
                     soundEvent = SoundEvents.ENTITY_FOX_TELEPORT;
                     soundCategory = SoundCategory.NEUTRAL;
-                } else {
+                } else if (entity instanceof PlayerEntity) {
                     soundEvent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
                     soundCategory = SoundCategory.PLAYERS;
+                } else {
+                    soundEvent = SoundEvents.ENTITY_PLAYER_TELEPORT;
+                    soundCategory = SoundCategory.NEUTRAL;
                 }
 
                 world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), soundEvent, soundCategory);
