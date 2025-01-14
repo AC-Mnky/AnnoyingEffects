@@ -13,12 +13,12 @@
     "defaultRequire": 1
   },
   "client": [
-    "ChatHudMixin",
-    "ChatScreenMixin",
-    "ClientPlayerEntityMixin",
-    "ClientPlayerInteractionManagerMixin",
-    "MinecraftClientMixin",
-    "MouseMixin",
-    "WorldRendererMixin"
+    "mixinclient.ChatHudMixin",
+    "mixinclient.ChatScreenMixin",
+    "mixinclient.ClientPlayerEntityMixin",
+    "mixinclient.ClientPlayerInteractionManagerMixin",
+    "mixinclient.MinecraftClientMixin",
+    "mixinclient.MouseMixin",
+    "mixinclient.WorldRendererMixin"
   ]
 }

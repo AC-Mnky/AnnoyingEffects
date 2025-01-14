@@ -1,4 +1,4 @@
-package top.bearcabbage.annoyingeffects.mixin;
+package top.bearcabbage.annoyingeffects.mixin.mixinclient;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerInteractionManager;

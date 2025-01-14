@@ -1,4 +1,4 @@
-package top.bearcabbage.annoyingeffects.mixin;
+package top.bearcabbage.annoyingeffects.mixin.mixinclient;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
@@ -20,9 +20,10 @@ public class ChatHudMixin {
     {
         MinecraftClient client = MinecraftClient.getInstance();
         if(client.player == null || !client.player.isAlive() || !client.player.hasStatusEffect(AnnoyingEffects.REPEATER)) return;
+//        client.player.networkHandler.sendChatMessage("???");
         String text = "\"" + message.getString() + "\"";
         if(text.contains("\"\"\"")) return;
-        client.inGameHud.getChatHud().addToMessageHistory(text);
+//        client.inGameHud.getChatHud().addToMessageHistory(text);
         client.player.networkHandler.sendChatMessage(text);
     }
 }

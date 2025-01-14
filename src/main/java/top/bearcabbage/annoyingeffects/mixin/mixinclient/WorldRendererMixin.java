@@ -1,4 +1,4 @@
-package top.bearcabbage.annoyingeffects.mixin;
+package top.bearcabbage.annoyingeffects.mixin.mixinclient;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
@@ -13,7 +13,7 @@ public class WorldRendererMixin {
 
     @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 0)
     private double modifyRenderPosX(double posX) {
-        if(MinecraftClient.getInstance().player.hasStatusEffect(AnnoyingEffects.SCHIZOPHRENIA)) return posX + SchizophreniaStatusEffect.OFFSET_X;
+        if(MinecraftClient.getInstance().player != null && MinecraftClient.getInstance().player.hasStatusEffect(AnnoyingEffects.SCHIZOPHRENIA)) return posX + SchizophreniaStatusEffect.OFFSET_X;
         return posX;
     }
 }
