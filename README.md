@@ -40,7 +40,7 @@ All effects are not explicitly stated and need to be discovered by the players t
 | Oppressed | Must keep head down, vertical angle cannot exceed 45 degrees. | Adaptable, Uncomfortable | 10/10/600 | ✅ | ✅ Lead |
 | ReallyCold | Freezes (similar to powdered snow). Cannot jump. | Damage, Nightmare | 0/3/200 | ✅❇️ | ✅ Powder Snow Bucket |
 | ReallyHot | Burns. | Damage, Nightmare | 0/3/200 | ✅❇️ | ✅ Lava Bucket |
-| Repeater | Repeats what the last person said. | Joke | 60/120/600 | ▶️✔️ Repeat Player | ✅ Redstone Repeater |
+| Repeater | Repeats what the last person said. | Joke | 60/120/600 | ✅✔️ | ✅ Redstone Repeater |
 | Schizophrenia | Shifts the viewpoint origin and model rendering position 0.91 east. | SevereHandicap | / | ✅✔️ | ✅ Crack |
 | Slippy | Reduced friction and acceleration (similar to walking on ice). | HighlyAdaptable, Nightmare | 0/120/600 | ✅❇️ | ✅ Ice Block |
 | Spin | Continuously spins counterclockwise. | SevereHandicap, Uncomfortable | 10/10/600 | ✅ | ✅ 🌀 |
