@@ -16,10 +16,10 @@ All effects are not explicitly stated and need to be discovered by the players t
 
 | Name / `CodeName` | Effect | Tags | Dream duration / interval; Nightmare duration / interval | Implemented | Icon |
 | ----------------- | ------ | ---- | ----------------- | ----------- | ---- |
-| Tangling nightmare | Randomly applies status effects from this table. Players cannot use milk. | / | / | ✅▶️❇️ | ✅ Enchanted Pumpkin Head |
-| Tangling dreams | Randomly applies non-Nightmare tag status effects from this table. | / | / | ✅▶️❇️ | ✅Candles |
+| Tangling nightmare | Randomly applies status effects from this table. Players cannot use milk. | / | / | ✅✳️❇️ | ✅ Enchanted Pumpkin Head |
+| Tangling dreams | Randomly applies non-Nightmare tag status effects from this table. | / | / | ✅✳️❇️ | ✅Candles |
 | Anorexia | Cannot use food. | Handicap | 15/600; 200/200 | ✅✔️✔️ | ✅ No Bread |
-| Curse of not eating carrot / CarrotCurse | Receives a stack of poisonous potatoes every tick. | Handicap | 30/600; 120/600 (only if the player eats too few carrots) | ✅✔️✔️ | ✅ Poisonous Potato |
+| Curse of not eating carrot / CarrotCurse | Receives a stack of poisonous potatoes every tick. | Handicap | 0; 60/1200 (only if the player eats too few carrots) | ✅✔️✔️ | ✅ Poisonous Potato |
 | Channeling | (Only during thunderstorms) A lightning bolt strikes around every 20 ticks (with a certain probability of hitting). | Damage, Adaptable, Terrachanging, Nightmare | 0; 20/100 (only during thunderstorms) | ✅✳️❇️ | ✅ Trident |
 | Essence of fire / ChaoticExplosion | Continuously causes explosions (average 50 ticks). | Damage, Terrachanging, Nightmare | 0; 15/600 | ✅✳️❇️ | ✅ Alchemy Symbol for Fire |
 | Where am I? / ChaoticTeleportation | Triggers a chorus fruit teleport every 10 ticks. | SevereHandicap, Nightmare | 0; 5/200 | ✅✳️❇️ | ✅ Popped Chorus Fruit |
@@ -66,7 +66,7 @@ Features that may be added in the future:
 
 - ~~Amplifier for every effect~~(Done)
 - ~~Nightmare may apply effects with amplifier~~(Done)
-- Nightmare may be applied to mobs
+- ~~Nightmare may be applied to mobs~~(Done)
 - Color for every effect
 - Potions
 - Config: you can turn on 'always nightmare' for better(?) game experience

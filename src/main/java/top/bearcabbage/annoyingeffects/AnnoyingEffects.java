@@ -11,6 +11,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -22,6 +24,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
@@ -118,7 +121,7 @@ public class AnnoyingEffects implements ModInitializer {
 				ItemStack pumpkin = new ItemStack(Items.CARVED_PUMPKIN, 1);
 				RegistryEntry<Enchantment> enchantment = (RegistryEntry) world.getRegistryManager().get(RegistryKey.ofRegistry(Identifier.ofVanilla("enchantment"))).getEntry(Identifier.ofVanilla("binding_curse")).orElseThrow();
 				pumpkin.addEnchantment(enchantment, 1);
-				pumpkin.apply(DataComponentTypes.ITEM_NAME, Text.of("噩梦缠绕"), UnaryOperator.identity());
+				pumpkin.apply(DataComponentTypes.ITEM_NAME, Text.translatable("effect.annoyingeffects.tangling_nightmare"), UnaryOperator.identity());
 				player.setStackInHand(hand, pumpkin);
 				player.sendMessage(Text.translatable("messages.annoyingeffects.tangling_nightmare_milk"), true);
 				return TypedActionResult.pass(pumpkin);
@@ -149,17 +152,39 @@ public class AnnoyingEffects implements ModInitializer {
 		});
 
 		ServerTickEvents.END_SERVER_TICK.register((server) -> {
+			for(ServerWorld world: server.getWorlds()){
+				for(Entity entity: world.iterateEntities()){
+					if(!(entity instanceof LivingEntity livingEntity)) continue;
+
+					StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) livingEntity;
+					for(;;) {
+						StatusEffectInstance effect = stackHolder.popStatusEffect();
+						if (effect == null) break;
+						livingEntity.addStatusEffect(effect);
+					}
+
+					if(livingEntity.hasStatusEffect(INSTANT_HEALTH) && Objects.requireNonNull(livingEntity.getStatusEffect(INSTANT_HEALTH)).getAmplifier()==42) {
+						livingEntity.clearStatusEffects();
+						livingEntity.addStatusEffect(new StatusEffectInstance(INSTANT_HEALTH, 841, 42, true, false));
+					}
+
+				}
+			}
+
+
+
 			for(ServerPlayerEntity player: server.getPlayerManager().getPlayerList()){
-				StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
-				for(;;) {
-					StatusEffectInstance effect = stackHolder.popStatusEffect();
-					if (effect == null) break;
-					player.addStatusEffect(effect);
-				}
-				if(player.hasStatusEffect(INSTANT_HEALTH) && Objects.requireNonNull(player.getStatusEffect(INSTANT_HEALTH)).getAmplifier()==42) {
-					player.clearStatusEffects();
-					player.addStatusEffect(new StatusEffectInstance(INSTANT_HEALTH, 841, 42, true, false));
-				}
+//				StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
+//				for(;;) {
+//					StatusEffectInstance effect = stackHolder.popStatusEffect();
+//					if (effect == null) break;
+//					player.addStatusEffect(effect);
+//				}
+//
+//				if(player.hasStatusEffect(INSTANT_HEALTH) && Objects.requireNonNull(player.getStatusEffect(INSTANT_HEALTH)).getAmplifier()==42) {
+//					player.clearStatusEffects();
+//					player.addStatusEffect(new StatusEffectInstance(INSTANT_HEALTH, 841, 42, true, false));
+//				}
 
 				if(!player.isAlive()){
 					WaterFillingStatusEffect.WaterTicks.reset(player);
@@ -170,7 +195,7 @@ public class AnnoyingEffects implements ModInitializer {
 
 	private void loadStatusEffects() {
 		STATUS_EFFECT_MAP.put(ANOREXIA, 				config.getStatusParameters("anorexia", 					paraMap(200, 200, null, 15, 600, null)));
-		STATUS_EFFECT_MAP.put(CARROT_CURSE, 			config.getStatusParameters("carrot_curse", 				paraMap(120, 600, null, 30, null, null)));
+		STATUS_EFFECT_MAP.put(CARROT_CURSE, 			config.getStatusParameters("carrot_curse", 				paraMap(60, 1200)));
 		STATUS_EFFECT_MAP.put(CHANNELING, 				config.getStatusParameters("channeling", 					paraMap(20, 100)));
 		STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, 		config.getStatusParameters("chaotic_explosion", 			paraMap(15, 600, 1)));
 		STATUS_EFFECT_MAP.put(CHAOTIC_TELEPORTATION, 	config.getStatusParameters("chaotic_teleportation", 		paraMap(5, 200)));

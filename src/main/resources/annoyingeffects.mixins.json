@@ -4,11 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockMixin",
-    "CreeperEntityMixin",
     "EntityMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
-    "MobEntityMixin"
+    "MobEntityMixin",
+    "CreeperEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

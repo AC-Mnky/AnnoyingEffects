@@ -5,8 +5,8 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.HorseEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
@@ -30,16 +30,16 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int this_amplifier) {
-        if(!entity.isPlayer()) return false;
+//        if(!entity.isPlayer()) return false;
         long random_seed = entity.getRandom().nextLong();
         if(entity.getWorld().isClient) return true;
-        ServerPlayerEntity player = (ServerPlayerEntity) entity;
-        ServerWorld world = (ServerWorld) player.getWorld();
-        StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
+//        ServerPlayerEntity player = (ServerPlayerEntity) entity;
+        ServerWorld world = (ServerWorld) entity.getWorld();
+        StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) entity;
         Random random = Random.create(random_seed);
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
 //            if(this instanceof TanglingDreamsStatusEffect && effect.value() instanceof NightMareStatusEffectTag) continue;
-            if(player.hasStatusEffect(effect)) continue;
+            if(entity.hasStatusEffect(effect)) continue;
             Map<String, Integer> durationAndInterval = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
 
             int duration = (this instanceof TanglingDreamsStatusEffect ? durationAndInterval.get("weak_duration") : durationAndInterval.get("duration")) * 20;
@@ -48,15 +48,20 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             if(duration < 0) continue;
 
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
-            if(!(this instanceof TanglingDreamsStatusEffect) && effect.equals(AnnoyingEffects.WATER_FILLING)){
-                 if(!player.isTouchingWaterOrRain() || WaterFillingStatusEffect.WaterTicks.get(player) < 1500) continue;
-                 duration = WaterFillingStatusEffect.WaterTicks.get(player) / 5;
+            if(effect.equals(AnnoyingEffects.HORSELESS) && entity.hasVehicle() && entity.getVehicle() instanceof HorseEntity) interval /= 5;
+
+            if(entity instanceof PlayerEntity player) {
+                if (!(this instanceof TanglingDreamsStatusEffect) && effect.equals(AnnoyingEffects.WATER_FILLING)) {
+                    if (!entity.isTouchingWaterOrRain() || WaterFillingStatusEffect.WaterTicks.get(player) < 1500)
+                        continue;
+                    duration = WaterFillingStatusEffect.WaterTicks.get(player) / 5;
+                }
+                if (effect.equals(AnnoyingEffects.CARROT_CURSE) && CarrotCurseStatusEffect.CarrotTicks.get(player) > 0)
+                    continue;
             }
-            if(effect.equals(AnnoyingEffects.CARROT_CURSE) && CarrotCurseStatusEffect.CarrotTicks.get(player) > 0) continue;
-            if(effect.equals(AnnoyingEffects.HORSELESS) && player.hasVehicle() && player.getVehicle() instanceof HorseEntity) interval /= 5;
 
             if(duration > 0 && random.nextInt(interval) < 1 << Math.min(30, this_amplifier)){
-//                player.addStatusEffect(new StatusEffectInstance(effect, duration));
+//                entity.addStatusEffect(new StatusEffectInstance(effect, duration));
                 stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration, amplifier + Math.max(0, this_amplifier / 31), true, true));
                 break;
             }
