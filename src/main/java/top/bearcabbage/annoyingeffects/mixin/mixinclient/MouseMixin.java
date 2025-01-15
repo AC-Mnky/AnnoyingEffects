@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.effect.SpinStatusEffect;
 
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class MouseMixin {
             double deltaYaw = 0F;
             int amplifier = Objects.requireNonNull(player.getStatusEffect(AnnoyingEffects.SPIN)).getAmplifier();
 //            float yaw = player.getYaw();
-            deltaYaw += -2F * (1 + amplifier);
+            deltaYaw += SpinStatusEffect.ANGLE_PER_TICK * 20 * (1 + amplifier)/ MinecraftClient.getInstance().getCurrentFps();
 //            player.setYaw(yaw);
             player.changeLookDirection(deltaYaw / 0.15F, 0F);
         }

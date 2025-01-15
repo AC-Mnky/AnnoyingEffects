@@ -33,17 +33,17 @@ All effects are not explicitly stated and need to be discovered by the players t
 | Crafting fatigue / DisableCraftingTable | Cannot interact with crafting tables or crafting stations. | Handicap, Nightmare | 0/60/600 | ✅✔️ | ✅ No Crafting Table |
 | Where is my bag? / DisableInventory | Cannot open the inventory (similar to being in a Nether portal). | SevereHandicap | 10/10/100 | ✅✔️ | ✅ No Bundle |
 | Insomnia / DisableSleeping | Cannot interact with beds. Phantoms spawn in the open. | Handicap, Nightmare | 0/120/600 | ✅✔️ | ✅ No Bed |
-| Gaze / EndermanHostile | Attracts the hatred of all Endermen. | Subtle | 0/120/600 | ✅ | ✅ Enderman Head |
+| Gaze / EndermanHostile | Attracts the hatred of all Endermen. | Subtle | 0/120/600 | ✅❇️ | ✅ Enderman Head |
 | Heaviness | Sinks in any situation. Increased gravity and fall damage. Fall damage in water. | Adaptable, Nightmare | 0/60/600 | ✅❇️ | ✅ Anvil |
-| Horseless | Horses around explode. | Subtle, Nightmare | 0/5/300 (riding: 60) | ✅ | ✅ No Horse |
+| Horseless | Horses around explode. | Subtle, Nightmare | 0/5/300 (riding: 60) | ✅❇️ | ✅ No Horse |
 | Misfortune | Drops fewer items when mining. | Subtle, Nightmare | / | ❌ Hard to implement | ✅ No Diamonds |
-| Oppressed | Must keep head down, vertical angle cannot exceed 45 degrees. | Adaptable, Uncomfortable | 10/10/600 | ✅ | ✅ Lead |
+| Oppressed | Must keep head down, vertical angle cannot exceed 45 degrees. | Adaptable, Uncomfortable | 10/10/600 | ✅✔️ | ✅ Lead |
 | ReallyCold | Freezes (similar to powdered snow). Cannot jump. | Damage, Nightmare | 0/3/200 | ✅❇️ | ✅ Powder Snow Bucket |
 | ReallyHot | Burns. | Damage, Nightmare | 0/3/200 | ✅❇️ | ✅ Lava Bucket |
 | Repeater | Repeats what the last person said. | Joke | 60/120/600 | ✅✔️ | ✅ Redstone Repeater |
 | Schizophrenia | Shifts the viewpoint origin and model rendering position 0.91 east. | SevereHandicap | / | ✅✔️ | ✅ Crack |
 | Slippy | Reduced friction and acceleration (similar to walking on ice). | HighlyAdaptable, Nightmare | 0/120/600 | ✅❇️ | ✅ Ice Block |
-| Spin | Continuously spins counterclockwise. | SevereHandicap, Uncomfortable | 10/10/600 | ✅ | ✅ 🌀 |
+| Spin | Continuously spins counterclockwise. | SevereHandicap, Uncomfortable | 10/10/600 | ✅✔️(works for slimes) | ✅ 🌀 |
 | Swapping hands | Swaps main and off-hand items every 20 ticks. | SevereHandicap | 6/10/200 | ✅✔️ | ✅ ✋↔️🤚 |
 | Targeted | Attracts all nearby projectiles, including your own. | Subtle, Nightmare | 0/120/600 | ✅✔️ | ✅ Target Block |
 | Voiceless | Cannot chat. | Joke, Nightmare | 0/120/600 | ✅✔️ | ✅ Sculk Shrieker |

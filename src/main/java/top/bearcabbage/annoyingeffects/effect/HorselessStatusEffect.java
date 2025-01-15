@@ -4,7 +4,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.passive.HorseEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
@@ -28,12 +27,11 @@ public class HorselessStatusEffect extends StatusEffect implements SubtleStatusE
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if(!(entity instanceof PlayerEntity player)) return false;
-        if(player.getWorld().isClient) return true;
-        ServerWorld world = (ServerWorld) player.getWorld();
+        if(entity.getWorld().isClient) return true;
+        ServerWorld world = (ServerWorld) entity.getWorld();
         for(HorseEntity horse : world.getNonSpectatingEntities(HorseEntity.class,
-                Box.of(player.getEyePos(), 10F, 10F, 10F))){
-            if(horse.isAlive() && horse.getPos().distanceTo(player.getPos()) < 4F){
+                Box.of(entity.getEyePos(), 10F, 10F, 10F))){
+            if(horse.isAlive() && horse.getPos().distanceTo(entity.getPos()) < 4F && !horse.equals(entity)){
                 entity.getWorld().createExplosion(horse, Explosion.createDamageSource(horse.getWorld(), horse), null, horse.getX(), horse.getBodyY(0.0625F), horse.getZ(), 6.0F, true, World.ExplosionSourceType.MOB);
                 horse.kill();
             }

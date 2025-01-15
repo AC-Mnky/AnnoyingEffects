@@ -7,6 +7,7 @@ import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 import top.bearcabbage.annoyingeffects.effecttags.UncomfortableStatusEffectTag;
 
 public class SpinStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag, UncomfortableStatusEffectTag {
+    public static final double ANGLE_PER_TICK = -6F;
     public SpinStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
@@ -22,9 +23,10 @@ public class SpinStatusEffect extends StatusEffect implements SevereHandicapStat
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-//        float yaw = entity.getYaw();
-//        yaw += -5F * (1 + amplifier);
-//        entity.setYaw(yaw);
+        if(entity.isPlayer()) return true;
+        float yaw = entity.prevYaw;
+        yaw += (float) (ANGLE_PER_TICK * (1 + amplifier));
+        entity.setYaw(yaw);
         return true;
     }
 }
