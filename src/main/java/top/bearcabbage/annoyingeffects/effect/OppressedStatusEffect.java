@@ -7,6 +7,7 @@ import top.bearcabbage.annoyingeffects.effecttags.AdaptableStatusEffectTag;
 import top.bearcabbage.annoyingeffects.effecttags.UncomfortableStatusEffectTag;
 
 public class OppressedStatusEffect extends StatusEffect implements AdaptableStatusEffectTag, UncomfortableStatusEffectTag {
+    public static final float PITCH = 18.0F;
     public OppressedStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
@@ -24,8 +25,8 @@ public class OppressedStatusEffect extends StatusEffect implements AdaptableStat
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(entity.isPlayer()) return true;
         float pitch = entity.getPitch();
-        if(pitch < 45F) pitch = 45F;
-        entity.setPitch(pitch);
+        float min_pitch = Math.min(PITCH * (1+amplifier), 90F);
+        entity.setPitch(Math.max(pitch, min_pitch));
         return true;
     }
 }

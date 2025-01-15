@@ -11,7 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
-import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
 
 import java.util.Map;
 
@@ -30,7 +29,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
 
     // 这个方法在应用药水效果时会被调用，所以我们可以在这里实现自定义功能。
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(LivingEntity entity, int this_amplifier) {
         if(!entity.isPlayer()) return false;
         long random_seed = entity.getRandom().nextLong();
         if(entity.getWorld().isClient) return true;
@@ -39,23 +38,26 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
         StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
         Random random = Random.create(random_seed);
         for(RegistryEntry<StatusEffect> effect: AnnoyingEffects.STATUS_EFFECT_MAP.keySet()){
-            if(this instanceof TanglingDreamsStatusEffect && effect.value() instanceof NightMareStatusEffectTag) continue;
+//            if(this instanceof TanglingDreamsStatusEffect && effect.value() instanceof NightMareStatusEffectTag) continue;
             if(player.hasStatusEffect(effect)) continue;
             Map<String, Integer> durationAndInterval = AnnoyingEffects.STATUS_EFFECT_MAP.get(effect);
+
             int duration = (this instanceof TanglingDreamsStatusEffect ? durationAndInterval.get("weak_duration") : durationAndInterval.get("duration")) * 20;
-            int interval = durationAndInterval.get("interval") * 20;
+            int interval = (this instanceof TanglingDreamsStatusEffect ? durationAndInterval.get("weak_interval") : durationAndInterval.get("interval")) * 20;
+            int amplifier = (this instanceof TanglingDreamsStatusEffect ? durationAndInterval.get("weak_amplifier") : durationAndInterval.get("amplifier"));
+            if(duration < 0) continue;
 
             if(effect.equals(AnnoyingEffects.CHANNELING) && !world.getLevelProperties().isThundering()) continue;
-            if(effect.equals(AnnoyingEffects.WATER_FILLING)){
+            if(!(this instanceof TanglingDreamsStatusEffect) && effect.equals(AnnoyingEffects.WATER_FILLING)){
                  if(!player.isTouchingWaterOrRain() || WaterFillingStatusEffect.WaterTicks.get(player) < 1500) continue;
                  duration = WaterFillingStatusEffect.WaterTicks.get(player) / 5;
             }
             if(effect.equals(AnnoyingEffects.CARROT_CURSE) && CarrotCurseStatusEffect.CarrotTicks.get(player) > 0) continue;
             if(effect.equals(AnnoyingEffects.HORSELESS) && player.hasVehicle() && player.getVehicle() instanceof HorseEntity) interval /= 5;
 
-            if(duration > 0 && random.nextInt(interval) <= amplifier){
+            if(duration > 0 && random.nextInt(interval) < 1 << Math.min(30, this_amplifier)){
 //                player.addStatusEffect(new StatusEffectInstance(effect, duration));
-                stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration, 0, true, true));
+                stackHolder.pushStatusEffect(new StatusEffectInstance(effect, duration, amplifier + Math.max(0, this_amplifier / 31), true, true));
                 break;
             }
         }

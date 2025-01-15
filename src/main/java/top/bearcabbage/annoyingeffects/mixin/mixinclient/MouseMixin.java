@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.effect.OppressedStatusEffect;
 import top.bearcabbage.annoyingeffects.effect.SpinStatusEffect;
 
 import java.util.Objects;
@@ -33,10 +34,10 @@ public class MouseMixin {
             player.changeLookDirection(deltaYaw / 0.15F, 0F);
         }
         if(player.hasStatusEffect(AnnoyingEffects.OPPRESSED)){
-            double deltaPitch = 0F;
-//            int amplifier = Objects.requireNonNull(player.getStatusEffect(AnnoyingEffects.OPPRESSED)).getAmplifier();
+            int amplifier = Objects.requireNonNull(player.getStatusEffect(AnnoyingEffects.OPPRESSED)).getAmplifier();
             float pitch = player.getPitch();
-            if(pitch < 45F) deltaPitch += 45F - pitch;
+            float min_pitch = Math.min(OppressedStatusEffect.PITCH * (1+amplifier), 90F);
+            double deltaPitch = Math.max(pitch, min_pitch) - pitch;
             player.changeLookDirection(0F, deltaPitch / 0.15F);
         }
 

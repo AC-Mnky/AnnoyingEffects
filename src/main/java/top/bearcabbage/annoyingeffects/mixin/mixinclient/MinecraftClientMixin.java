@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 
+import java.util.Objects;
+
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runnable> implements WindowEventHandler {
 
@@ -61,7 +63,8 @@ public abstract class MinecraftClientMixin extends ReentrantThreadExecutor<Runna
 //            this.interactionManager.
         }
         if (this.player!=null && this.player.hasStatusEffect(AnnoyingEffects.CONTROLS_CHAOTIC_USE)){
-            if(this.player.getRandom().nextInt(50) == 0){
+            int amplifier = Objects.requireNonNull(this.player.getStatusEffect(AnnoyingEffects.CONTROLS_CHAOTIC_USE)).getAmplifier();
+            if(this.player.getRandom().nextInt(50) <= amplifier){
                 this.doItemUse();
             }
         }

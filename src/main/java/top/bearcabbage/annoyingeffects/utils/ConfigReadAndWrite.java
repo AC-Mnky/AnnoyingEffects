@@ -83,7 +83,10 @@ public class ConfigReadAndWrite {
         Map<String, Integer> result = new HashMap<>();
         result.put("duration",  value.get("duration").getAsInt());
         result.put("interval", value.get("interval").getAsInt());
+        result.put("amplifier", value.get("amplifier").getAsInt());
         result.put("weak_duration", value.get("weak_duration").getAsInt());
+        result.put("weak_interval", value.get("weak_interval").getAsInt());
+        result.put("weak_amplifier", value.get("weak_amplifier").getAsInt());
         return result;
     }
     

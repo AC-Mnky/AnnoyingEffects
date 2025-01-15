@@ -25,7 +25,7 @@ public class ChaoticExplosionStatusEffect extends StatusEffect implements Severe
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(entity.getRandom().nextInt(50) <= amplifier && !entity.getWorld().isClient) {
-            entity.getWorld().createExplosion(entity, Explosion.createDamageSource(entity.getWorld(), entity), null, entity.getX(), entity.getBodyY(0.0625F), entity.getZ(), 1.0F, true, World.ExplosionSourceType.MOB);
+            entity.getWorld().createExplosion(entity, Explosion.createDamageSource(entity.getWorld(), entity), null, entity.getX(), entity.getBodyY(0.0625F), entity.getZ(), (float)Math.sqrt(1 + amplifier), true, World.ExplosionSourceType.MOB);
         }
         return true;
     }

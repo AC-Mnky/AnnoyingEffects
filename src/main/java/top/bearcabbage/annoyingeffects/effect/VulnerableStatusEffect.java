@@ -4,9 +4,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.player.PlayerEntity;
 import top.bearcabbage.annoyingeffects.effecttags.SubtleStatusEffectTag;
 
 public class VulnerableStatusEffect extends StatusEffect implements SubtleStatusEffectTag {
+    public static final boolean CAN_KILL_MOBS = false;
     public VulnerableStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
@@ -28,10 +30,10 @@ public class VulnerableStatusEffect extends StatusEffect implements SubtleStatus
     @Override
     public void onEntityDamage(LivingEntity entity, int amplifier, DamageSource source, float amount) {
         float health = entity.getHealth();
-//        if(!(entity instanceof PlayerEntity)){
-//            entity.setHealth(health - amount * 0.5F * (1 + amplifier));
-//            return;
-//        }
+        if(CAN_KILL_MOBS && !(entity instanceof PlayerEntity)){
+            entity.setHealth(health - amount * 0.5F * (1 + amplifier));
+            return;
+        }
         if(health <= 0.01F) return;
         entity.setHealth(Math.max(0.01F, health - amount * 0.5F * (1 + amplifier)));
     }

@@ -32,13 +32,14 @@ public class TargetedStatusEffect extends StatusEffect implements SubtleStatusEf
 //        if(!(entity instanceof PlayerEntity player)) return false;
         World world = entity.getWorld();
         Vec3d eyePos = entity.getEyePos();
+        double radius = RADIUS * (1 + amplifier);
         for(ProjectileEntity projectile: world.getNonSpectatingEntities(ProjectileEntity.class,
-                Box.of(eyePos, RADIUS * 2, RADIUS * 2, RADIUS * 2))){
+                Box.of(eyePos, radius * 2, radius * 2, radius * 2))){
             Vec3d vec = eyePos.subtract(projectile.getPos());
             double distance = eyePos.distanceTo(projectile.getPos());
-            if(distance >= RADIUS) continue;
+            if(distance >= radius) continue;
             Vec3d v = projectile.getVelocity();
-            projectile.setVelocity(v.multiply(DAMP).add(vec.normalize().multiply(MAX_ACCELERATION * (1 - distance / RADIUS))));
+            projectile.setVelocity(v.multiply(DAMP).add(vec.normalize().multiply(MAX_ACCELERATION * (1 - distance / radius))));
 
         }
         return true;

@@ -13,6 +13,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 
+import java.util.Objects;
+
 @Mixin(ChatHud.class)
 public class ChatHudMixin {
     @Unique
@@ -27,6 +29,7 @@ public class ChatHudMixin {
     {
         MinecraftClient client = MinecraftClient.getInstance();
         if(client.player == null || !client.player.isAlive() || !client.player.hasStatusEffect(AnnoyingEffects.REPEATER)) return;
+        int amplifier = Objects.requireNonNull(client.player.getStatusEffect(AnnoyingEffects.REPEATER)).getAmplifier();
         String rawText = message.getString();
         String text;
         if (indicator != null && (indicator.equals(MessageIndicator.system()) || indicator.equals(MessageIndicator.singlePlayer()))){
@@ -34,7 +37,7 @@ public class ChatHudMixin {
         } else {
             String[] split = rawText.split("> ", 2);
             if(split[0].endsWith(client.player.getName().getString())) return;
-            if(split[1].endsWith(" ".repeat(RECURSION))) return;
+            if(split[1].endsWith(" ".repeat(RECURSION + amplifier))) return;
             text = split[1];
         }
 //        client.inGameHud.getChatHud().addToMessageHistory(text);

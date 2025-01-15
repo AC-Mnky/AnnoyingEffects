@@ -29,9 +29,10 @@ public class HorselessStatusEffect extends StatusEffect implements SubtleStatusE
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         if(entity.getWorld().isClient) return true;
         ServerWorld world = (ServerWorld) entity.getWorld();
+        double distance = 4F * (1+amplifier);
         for(HorseEntity horse : world.getNonSpectatingEntities(HorseEntity.class,
-                Box.of(entity.getEyePos(), 10F, 10F, 10F))){
-            if(horse.isAlive() && horse.getPos().distanceTo(entity.getPos()) < 4F && !horse.equals(entity)){
+                Box.of(entity.getEyePos(), 2 * distance, 2 * distance, 2 * distance))){
+            if(horse.isAlive() && horse.getPos().distanceTo(entity.getEyePos()) < distance && !horse.equals(entity)){
                 entity.getWorld().createExplosion(horse, Explosion.createDamageSource(horse.getWorld(), horse), null, horse.getX(), horse.getBodyY(0.0625F), horse.getZ(), 6.0F, true, World.ExplosionSourceType.MOB);
                 horse.kill();
             }

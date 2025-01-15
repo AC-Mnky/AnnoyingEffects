@@ -7,7 +7,7 @@ import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 import top.bearcabbage.annoyingeffects.effecttags.UncomfortableStatusEffectTag;
 
 public class SpinStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag, UncomfortableStatusEffectTag {
-    public static final double ANGLE_PER_TICK = -6F;
+    public static final double ANGLE_PER_TICK = -9F;
     public SpinStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
