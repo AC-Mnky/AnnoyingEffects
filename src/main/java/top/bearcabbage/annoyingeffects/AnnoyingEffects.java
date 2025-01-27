@@ -63,7 +63,7 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final RegistryEntry<StatusEffect> CONTROLS_CHAOTIC_USE = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_chaotic_use"), new ControlsChaoticUseStatusEffect());
 	public static final RegistryEntry<StatusEffect> CONTROLS_CRAB = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_crab"), new ControlsCrabStatusEffect());
 	public static final RegistryEntry<StatusEffect> CONTROLS_MIRROR = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_mirror"), new ControlsMirrorStatusEffect());
-	public static final RegistryEntry<StatusEffect> CONTROLS_SHORT_REACH = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_short_reach"), new ControlsShortReachStatusEffect().addAttributeModifier(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE, Identifier.of("annoyingeffect.controls_short_range"), -1.0F, EntityAttributeModifier.Operation.ADD_VALUE).addAttributeModifier(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE, Identifier.of("annoyingeffect.controls_short_range"), -2.0F, EntityAttributeModifier.Operation.ADD_VALUE));
+	public static final RegistryEntry<StatusEffect> CONTROLS_SHORT_REACH = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "controls_short_reach"), new ControlsShortReachStatusEffect().addAttributeModifier(EntityAttributes.PLAYER_BLOCK_INTERACTION_RANGE, Identifier.of("annoyingeffect.controls_short_range"), -1.0F, EntityAttributeModifier.Operation.ADD_VALUE).addAttributeModifier(EntityAttributes.PLAYER_ENTITY_INTERACTION_RANGE, Identifier.of("annoyingeffect.controls_short_range"), -1.0F, EntityAttributeModifier.Operation.ADD_VALUE));
 	public static final RegistryEntry<StatusEffect> CRAWLER = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "crawler"), new CrawlerStatusEffect());
 	public static final RegistryEntry<StatusEffect> CREEPERPHOBIA = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "creeperphobia"), new CreeperphobiaStatusEffect());
 	public static final RegistryEntry<StatusEffect> CURSE_OF_VANISHING = Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(MOD_ID, "curse_of_vanishing"), new CurseOfVanishingStatusEffect());
@@ -200,7 +200,7 @@ public class AnnoyingEffects implements ModInitializer {
 		STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, 		config.getStatusParameters("chaotic_explosion", 			paraMap(15, 600, 1)));
 		STATUS_EFFECT_MAP.put(CHAOTIC_TELEPORTATION, 	config.getStatusParameters("chaotic_teleportation", 		paraMap(5, 200)));
 		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_DIG, 		config.getStatusParameters("controls_always_dig", 			paraMap(30, 300, null, 5, 600, null)));
-		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, 	config.getStatusParameters("controls_always_jump", 		paraMap(60, 600, null, 30, null, null)));
+		STATUS_EFFECT_MAP.put(CONTROLS_ALWAYS_JUMP, 	config.getStatusParameters("controls_always_jump", 		paraMap(30, 300, null, 15, 600, null)));
 		STATUS_EFFECT_MAP.put(CONTROLS_CHAOTIC_USE, 	config.getStatusParameters("controls_chaotic_use", 		paraMap(120, 600, 1, 30, null, 0)));
 		STATUS_EFFECT_MAP.put(CONTROLS_CRAB, 			config.getStatusParameters("controls_crab", 				paraMap(120, 600)));
 		STATUS_EFFECT_MAP.put(CONTROLS_MIRROR, 			config.getStatusParameters("controls_mirror", 				paraMap(120, 600, null, 30, null, null)));
@@ -222,13 +222,13 @@ public class AnnoyingEffects implements ModInitializer {
 		STATUS_EFFECT_MAP.put(SCHIZOPHRENIA, 			config.getStatusParameters("schizophrenia", 				paraMap(-1, -1)));
 		STATUS_EFFECT_MAP.put(SLIPPY, 					config.getStatusParameters("slippy", 						paraMap(120, 600)));
 		STATUS_EFFECT_MAP.put(SPIN, 					config.getStatusParameters("spin", 						paraMap(5, 300, 4, 3, 600, 2)));
-		STATUS_EFFECT_MAP.put(SWAPPING_HANDS, 			config.getStatusParameters("swapping_hands", 				paraMap(10, 200, null, 6, 400, null)));
+		STATUS_EFFECT_MAP.put(SWAPPING_HANDS, 			config.getStatusParameters("swapping_hands", 				paraMap(10, 200, null)));
 		STATUS_EFFECT_MAP.put(TARGETED, 				config.getStatusParameters("targeted", 					paraMap(120, 600)));
 		STATUS_EFFECT_MAP.put(VOICELESS, 				config.getStatusParameters("voiceless", 					paraMap(120, 600)));
 		STATUS_EFFECT_MAP.put(VULNERABLE, 				config.getStatusParameters("vulnerable", 					paraMap(120, 600, null, 30, null, null)));
 		STATUS_EFFECT_MAP.put(WATER_FILLING, 			config.getStatusParameters("water_filling", 				paraMap(0, 15, null, -1, null, null)));
 		STATUS_EFFECT_MAP.put(BLINDNESS, 				config.getStatusParameters("blindness", 					paraMap(30, 600)));
-		STATUS_EFFECT_MAP.put(DARKNESS, 				config.getStatusParameters("darkness", 					paraMap(60, 600, null, 30, 1200, null)));
+		STATUS_EFFECT_MAP.put(DARKNESS, 				config.getStatusParameters("darkness", 					paraMap(30, 300, null, 15, 600, null)));
 		STATUS_EFFECT_MAP.put(HUNGER, 					config.getStatusParameters("hunger", 						paraMap(60, 600, null, 30, 1200, null)));
 		STATUS_EFFECT_MAP.put(INFESTED, 				config.getStatusParameters("infested", 					paraMap(120, 600)));
 		STATUS_EFFECT_MAP.put(LEVITATION, 				config.getStatusParameters("levitation", 					paraMap(10, 200)));
