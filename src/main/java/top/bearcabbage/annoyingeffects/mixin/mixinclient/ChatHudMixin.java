@@ -5,6 +5,7 @@ import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.MessageIndicator;
 import net.minecraft.network.message.MessageSignatureData;
 import net.minecraft.text.Text;
+import net.minecraft.util.StringHelper;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -12,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
+import top.bearcabbage.annoyingeffects.utils.ReturnInt;
 
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class ChatHudMixin {
     private void injectAddMessageForRepeater(Text message, @Nullable MessageSignatureData signatureData, @Nullable MessageIndicator indicator, CallbackInfo ci)
     {
         MinecraftClient client = MinecraftClient.getInstance();
-        if(client.player == null || !client.player.isAlive() || !client.player.hasStatusEffect(AnnoyingEffects.REPEATER)) return;
+        if(client.player == null ||((ReturnInt)(client.player)).Return("loadTick") < 100 || !client.player.isAlive()|| !client.player.hasStatusEffect(AnnoyingEffects.REPEATER)) return;
         int amplifier = Objects.requireNonNull(client.player.getStatusEffect(AnnoyingEffects.REPEATER)).getAmplifier();
         String rawText = message.getString();
         String text;
@@ -41,6 +43,7 @@ public class ChatHudMixin {
             text = split[1];
         }
 //        client.inGameHud.getChatHud().addToMessageHistory(text);
-        client.player.networkHandler.sendChatMessage(text + " ");
+
+        client.player.networkHandler.sendChatMessage(StringHelper.truncateChat(text) + " ");
     }
 }
