@@ -2,17 +2,13 @@ package top.bearcabbage.annoyingeffects.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import top.bearcabbage.annoyingeffects.effecttags.SubtleStatusEffectTag;
 
-public class VulnerableStatusEffect extends StatusEffect implements SubtleStatusEffectTag {
+public class VulnerableStatusEffect extends AnnoyingStatusEffect implements SubtleStatusEffectTag {
     public static final boolean CAN_KILL_MOBS = false;
     public VulnerableStatusEffect() {
-        super(
-                StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
-                0x98D982); // 显示的颜色
+        super(); // 显示的颜色
     }
 
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果

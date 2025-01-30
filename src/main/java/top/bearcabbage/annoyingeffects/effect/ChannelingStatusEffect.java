@@ -3,8 +3,6 @@ package top.bearcabbage.annoyingeffects.effect;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.network.packet.s2c.play.PositionFlag;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.server.world.ServerWorld;
@@ -16,11 +14,9 @@ import top.bearcabbage.annoyingeffects.effecttags.TerrachangingStatusEffectTag;
 
 import java.util.EnumSet;
 
-public class ChannelingStatusEffect extends StatusEffect implements DamageStatusEffectTag, AdaptableStatusEffectTag, TerrachangingStatusEffectTag, NightMareStatusEffectTag {
+public class ChannelingStatusEffect extends AnnoyingStatusEffect implements DamageStatusEffectTag, AdaptableStatusEffectTag, TerrachangingStatusEffectTag, NightMareStatusEffectTag {
     public ChannelingStatusEffect() {
-        super(
-                StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
-                0x98D982); // 显示的颜色
+        super(); // 显示的颜色
     }
 
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果

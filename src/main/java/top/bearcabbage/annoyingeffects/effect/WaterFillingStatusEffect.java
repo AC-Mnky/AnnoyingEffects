@@ -2,8 +2,6 @@ package top.bearcabbage.annoyingeffects.effect;
 
 import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FlowableFluid;
@@ -20,13 +18,11 @@ import top.bearcabbage.annoyingeffects.effecttags.NightMareStatusEffectTag;
 import top.bearcabbage.annoyingeffects.effecttags.TerrachangingStatusEffectTag;
 import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
-public class WaterFillingStatusEffect extends StatusEffect implements DamageStatusEffectTag, AdaptableStatusEffectTag, TerrachangingStatusEffectTag, NightMareStatusEffectTag {
+public class WaterFillingStatusEffect extends AnnoyingStatusEffect implements DamageStatusEffectTag, AdaptableStatusEffectTag, TerrachangingStatusEffectTag, NightMareStatusEffectTag {
     public final double REACH = 3F;
     public final double BREAKING_FORCE = 2.5F;
     public WaterFillingStatusEffect() {
-        super(
-                StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
-                0x98D982); // 显示的颜色
+        super(); // 显示的颜色
     }
 
     public static final NoSavePlayerData<Integer> WaterTicks = new NoSavePlayerData<>(0);

@@ -174,27 +174,16 @@ public class AnnoyingEffects implements ModInitializer {
 
 
 			for(ServerPlayerEntity player: server.getPlayerManager().getPlayerList()){
-//				StatusEffectInstanceStackHolder stackHolder = (StatusEffectInstanceStackHolder) player;
-//				for(;;) {
-//					StatusEffectInstance effect = stackHolder.popStatusEffect();
-//					if (effect == null) break;
-//					player.addStatusEffect(effect);
-//				}
-//
-//				if(player.hasStatusEffect(INSTANT_HEALTH) && Objects.requireNonNull(player.getStatusEffect(INSTANT_HEALTH)).getAmplifier()==42) {
-//					player.clearStatusEffects();
-//					player.addStatusEffect(new StatusEffectInstance(INSTANT_HEALTH, 841, 42, true, false));
-//				}
-
 				if(!player.isAlive()){
 					WaterFillingStatusEffect.WaterTicks.reset(player);
 				}
+//				player.sendMessage(Text.of(Text.of(TanglingNightmareStatusEffect.AnnoyingBar.get(player).toString()).asTruncatedString(5)), true);
 			}
 		});
 	}
 
 	private void loadStatusEffects() {
-		STATUS_EFFECT_MAP.put(ANOREXIA, 				config.getStatusParameters("anorexia", 					paraMap(200, 200, null, 15, 600, null)));
+		STATUS_EFFECT_MAP.put(ANOREXIA, 				config.getStatusParameters("anorexia", 					paraMap(200, 200)));
 		STATUS_EFFECT_MAP.put(CARROT_CURSE, 			config.getStatusParameters("carrot_curse", 				paraMap(60, 1200)));
 		STATUS_EFFECT_MAP.put(CHANNELING, 				config.getStatusParameters("channeling", 					paraMap(20, 100)));
 		STATUS_EFFECT_MAP.put(CHAOTIC_EXPLOSION, 		config.getStatusParameters("chaotic_explosion", 			paraMap(15, 600, 1)));

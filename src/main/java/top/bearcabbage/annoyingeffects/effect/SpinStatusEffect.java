@@ -1,17 +1,13 @@
 package top.bearcabbage.annoyingeffects.effect;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import top.bearcabbage.annoyingeffects.effecttags.SevereHandicapStatusEffectTag;
 import top.bearcabbage.annoyingeffects.effecttags.UncomfortableStatusEffectTag;
 
-public class SpinStatusEffect extends StatusEffect implements SevereHandicapStatusEffectTag, UncomfortableStatusEffectTag {
+public class SpinStatusEffect extends AnnoyingStatusEffect implements SevereHandicapStatusEffectTag, UncomfortableStatusEffectTag {
     public static final double ANGLE_PER_TICK = -9F;
     public SpinStatusEffect() {
-        super(
-                StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
-                0x98D982); // 显示的颜色
+        super(); // 显示的颜色
     }
 
     // 这个方法在每个 tick 都会调用，以检查是否应应用药水效果
