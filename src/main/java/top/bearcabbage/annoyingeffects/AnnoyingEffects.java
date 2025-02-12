@@ -1,10 +1,14 @@
 package top.bearcabbage.annoyingeffects;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
@@ -34,6 +38,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.bearcabbage.annoyingeffects.effect.*;
+import top.bearcabbage.annoyingeffects.network.AnnoyingBarDisplayPayload;
+import top.bearcabbage.annoyingeffects.network.AnnoyingBarStagePayload;
 import top.bearcabbage.annoyingeffects.utils.ConfigReadAndWrite;
 
 import java.util.HashMap;
@@ -47,6 +53,9 @@ import static net.minecraft.item.Items.*;
 public class AnnoyingEffects implements ModInitializer {
 	public static final String MOD_ID = "annoyingeffects";
 	private static final ConfigReadAndWrite config = new ConfigReadAndWrite(FabricLoader.getInstance().getConfigDir().resolve("AnnoyingEffects.json"));
+
+	public static boolean displayAnnoyingBar = true;
+	public static int annoyingBarStage = 0;
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
@@ -102,6 +111,28 @@ public class AnnoyingEffects implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		loadStatusEffects();
+
+		//register network payload and UI Display
+		PayloadTypeRegistry.playS2C().register(AnnoyingBarDisplayPayload.ID, AnnoyingBarDisplayPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(AnnoyingBarStagePayload.ID, AnnoyingBarStagePayload.CODEC);
+		if(FabricLoader.getInstance().getEnvironmentType().equals(EnvType.CLIENT)){
+			ClientPlayNetworking.registerGlobalReceiver(AnnoyingBarDisplayPayload.ID, (payload, context) -> {
+				context.client().execute(() -> {
+					displayAnnoyingBar = payload.display();
+				});
+			});
+			ClientPlayNetworking.registerGlobalReceiver(AnnoyingBarStagePayload.ID, (payload, context) -> {
+				context.client().execute(() -> {
+					annoyingBarStage = payload.stage();
+				});
+			});
+
+			HudRenderCallback.EVENT.register((context, renderTickCounter) -> {
+				if (displayAnnoyingBar && annoyingBarStage < 6) {
+					context.drawTexture(Identifier.of(MOD_ID, "textures/gui/model"+annoyingBarStage+".png"),context.getScaledWindowWidth() / 2 - 7,context.getScaledWindowHeight() - 57 + 8,0,0,12,12,12,12);
+				}
+			});
+		}
 
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {

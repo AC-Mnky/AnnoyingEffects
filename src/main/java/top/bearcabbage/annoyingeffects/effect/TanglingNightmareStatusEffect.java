@@ -1,5 +1,6 @@
 package top.bearcabbage.annoyingeffects.effect;
 
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -7,15 +8,24 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 import top.bearcabbage.annoyingeffects.AnnoyingEffects;
 import top.bearcabbage.annoyingeffects.StatusEffectInstanceStackHolder;
+import top.bearcabbage.annoyingeffects.network.AnnoyingBarDisplayPayload;
+import top.bearcabbage.annoyingeffects.network.AnnoyingBarStagePayload;
 import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 
 import java.util.Map;
 
+import static top.bearcabbage.annoyingeffects.AnnoyingEffects.MOD_ID;
+
 public class TanglingNightmareStatusEffect extends StatusEffect {
+    public static final Identifier ANNOYINGBAR_DISPLAY_PACKET = Identifier.of(MOD_ID, "annoyingbar-display-payload");
+    public static final Identifier ANNOYINGBAR_STAGE_PACKET = Identifier.of(MOD_ID, "annoyingbar-stage-payload");
+
     public TanglingNightmareStatusEffect() {
         super(
                 StatusEffectCategory.HARMFUL, // 药水效果是有益的还是有害的
@@ -77,6 +87,9 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
             double increment = increment_base * Math.pow(increment_multiplier, annoyingEffectCount) * (1 << Math.min(30, this_amplifier));
 
             AnnoyingBar.set(player, AnnoyingBar.get(player) + increment);
+            if(player instanceof ServerPlayerEntity serverPlayer) {
+                ServerPlayNetworking.send(serverPlayer, new AnnoyingBarStagePayload((int) (AnnoyingBar.get(player) * 6)));
+            }
             if(AnnoyingBar.get(player) < 1.0) return true;
             AnnoyingBar.set(player, 0.0);
 
