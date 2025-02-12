@@ -54,7 +54,7 @@ public class AnnoyingEffects implements ModInitializer {
 	public static final String MOD_ID = "annoyingeffects";
 	private static final ConfigReadAndWrite config = new ConfigReadAndWrite(FabricLoader.getInstance().getConfigDir().resolve("AnnoyingEffects.json"));
 
-	public static boolean displayAnnoyingBar = true;
+	public static boolean displayAnnoyingBar = false;
 	public static int annoyingBarStage = 0;
 
 	// This logger is used to write text to the console and the log file.

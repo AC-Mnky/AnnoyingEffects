@@ -21,6 +21,7 @@ import top.bearcabbage.annoyingeffects.utils.NoSavePlayerData;
 import java.util.Map;
 
 import static top.bearcabbage.annoyingeffects.AnnoyingEffects.MOD_ID;
+import static top.bearcabbage.annoyingeffects.AnnoyingEffects.displayAnnoyingBar;
 
 public class TanglingNightmareStatusEffect extends StatusEffect {
     public static final Identifier ANNOYINGBAR_DISPLAY_PACKET = Identifier.of(MOD_ID, "annoyingbar-display-payload");
@@ -88,6 +89,7 @@ public class TanglingNightmareStatusEffect extends StatusEffect {
 
             AnnoyingBar.set(player, AnnoyingBar.get(player) + increment);
             if(player instanceof ServerPlayerEntity serverPlayer) {
+                ServerPlayNetworking.send(serverPlayer, new AnnoyingBarDisplayPayload(true));
                 ServerPlayNetworking.send(serverPlayer, new AnnoyingBarStagePayload((int) (AnnoyingBar.get(player) * 6)));
             }
             if(AnnoyingBar.get(player) < 1.0) return true;
