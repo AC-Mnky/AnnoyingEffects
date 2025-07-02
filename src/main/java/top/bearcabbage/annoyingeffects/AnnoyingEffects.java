@@ -13,6 +13,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -129,7 +130,7 @@ public class AnnoyingEffects implements ModInitializer {
 
 			HudRenderCallback.EVENT.register((context, renderTickCounter) -> {
 				if (displayAnnoyingBar && annoyingBarStage < 6) {
-					context.drawTexture(Identifier.of(MOD_ID, "textures/gui/model"+annoyingBarStage+".png"),context.getScaledWindowWidth() / 2 - 7,context.getScaledWindowHeight() - 57 + 8,0,0,12,12,12,12);
+					if (!MinecraftClient.getInstance().options.hudHidden) context.drawTexture(Identifier.of(MOD_ID, "textures/gui/model"+annoyingBarStage+".png"),context.getScaledWindowWidth() / 2 - 7,context.getScaledWindowHeight() - 57 + 8,0,0,12,12,12,12);
 				}
 			});
 		}
